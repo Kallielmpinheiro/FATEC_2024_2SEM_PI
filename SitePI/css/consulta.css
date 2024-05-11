@@ -1,0 +1,100 @@
+body {
+    background-image: url('../img/pic4.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-size: cover; 
+    background-position: center;
+}
+
+table {
+    width: 80%;
+    margin: 40px auto;
+    background-color: rgba(46, 100, 118, 0.5);
+}
+
+table.list {
+    text-align: center;
+    width: 100%;
+}
+
+td {
+    border: 1px solid rgb(245, 234, 234);
+    text-align: left;
+    padding: 8px 15px;
+}
+
+tr:nth-child(even),
+table.list thread > tr {
+    background-color: rgb(245, 234, 234);
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 91%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(245, 234, 234);
+    border-radius: 4px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    background: #eee;
+    padding: 6px 12px;
+    margin: 15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type="submit"]:hover {
+    background: #464849;
+}
+
+input[type="reset"]:hover {
+    background: #464849;
+}
+
+button {
+    background: #eee;
+    padding: 6px 12px;
+    margin: 15px 0 10px;
+    display: inline-block;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background: #2e6476;
+}
+
+/* Capa */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    height: 50px;
+    background-color: rgb(245, 234, 234);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+header span {
+    color: #2e6476;
+}
