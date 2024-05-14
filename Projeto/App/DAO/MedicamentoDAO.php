@@ -10,14 +10,13 @@ class MedicamentoDAO extends PessoaDAO
 
     public function InsertMedication(MedicamentoModel $model)
     {   
-        $sql = "INSERT INTO medicacao (paciente_id, nome, quantidade, vezes_ao_dia, duracao_dias) VALUES(?, ?, ?, ?, ?)"; 
+        $sql = "INSERT INTO medicamentosconsulta (nomeMedicamento, fabricante, tipo, uso) VALUES(?, ?, ?, ?)"; 
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $model->paciente_id);
-        $stmt->bindValue(2, $model->nome);
-        $stmt->bindValue(3, $model->quantidade);
-        $stmt->bindValue(4, $model->vezes_ao_dia);
-        $stmt->bindValue(5, $model->duracao_dias);
+        $stmt->bindValue(1, $model->nomeMedicamento);
+        $stmt->bindValue(2, $model->fabricante);
+        $stmt->bindValue(3, $model->tipo);
+        $stmt->bindValue(4, $model->uso);
 
 
         $stmt->execute();
@@ -25,7 +24,7 @@ class MedicamentoDAO extends PessoaDAO
 
     public function select()
     {
-        $sql = "SELECT * FROM medicacao;";
+        $sql = "SELECT * FROM medicamentosconsulta;";
 
         $stmt = $this->conexao->prepare($sql);
 

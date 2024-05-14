@@ -28,10 +28,10 @@
             <i class="fas fa-notes-medical"></i>
             <h2>Registro e Monitoramento</h2>
             <form action="#" method="post">
-                <label for="side-effects">Efeitos Colaterais:</label>
+                <label for="side-effects">Descrição do problema:</label>
                 <input type="text" id="side-effects" name="side-effects" placeholder="Efeito colateral">
 
-                <label for="severity">Gravidade:</label>
+                <label for="severity"></label>
                 <select id="severity" name="severity">
                     <option value="mild">Leve</option>
                     <option value="moderate">Moderada</option>
@@ -41,17 +41,7 @@
                 <button type="submit" class="btn btn1">Registrar Efeito Colateral</button>
             </form>
         </div>
-        <div class="box1">
-            <i class="fas fa-comments-medical"></i>
-            <h2>Comunicação Direta</h2>
-            <form action="#" method="post">
-                <label for="symptoms">Sintomas:</label>
-                <textarea id="symptoms" name="symptoms" placeholder="Descreva seus sintomas"></textarea>
-
-                <label for="message">Mensagem:</label>
-                <textarea id="message" name="message" placeholder="Digite sua mensagem"></textarea>
-
-                <button type="submit" class="btn btn1">Enviar Mensagem</button>
+       
             </form>
         </div>
     </div>

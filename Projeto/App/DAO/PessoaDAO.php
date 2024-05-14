@@ -6,7 +6,7 @@
         protected $conexao;
         public function __construct()
         {
-            $dsn = "mysql:host=localhost:3306;dbname=db_clinica";
+            $dsn = "mysql:host=localhost:3306;dbname=bdclinicapi";
 
             $this->conexao = new PDO($dsn, 'root','');
 

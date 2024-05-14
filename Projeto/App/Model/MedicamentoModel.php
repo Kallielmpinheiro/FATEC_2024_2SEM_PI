@@ -5,8 +5,8 @@ class MedicamentoModel
     public $result;
     public $parametro;
     public $rows;
-    public $paciente_id, $nome, $quantidade, $vezes_ao_dia, $duracao_dias;
-    public PessoaModel $nomePessoa;
+    public $nomeMedicamento, $fabricante, $tipo, $uso;
+    
     public function save()
     {
         include 'App/DAO/MedicamentoDAO.php';

@@ -27,11 +27,10 @@ public static function save()
 {
     include 'App/Model/MedicamentoModel.php';
     $model = new MedicamentoModel();
-    $model->paciente_id = $_POST['paciente_id'];
-    $model->nome = $_POST['nome'];
-    $model->quantidade = $_POST['quantidade'];
-    $model->duracao_dias = $_POST['duracao_dias'];
-    $model->vezes_ao_dia = $_POST['vezes_ao_dia'];
+    $model->nomeMedicamento = $_POST['nomeMedicamento'];
+    $model->fabricante = $_POST['fabricante'];
+    $model->tipo = $_POST['tipo'];
+    $model->uso = $_POST['uso'];
 
 
     $model->save();
