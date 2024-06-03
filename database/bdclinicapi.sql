@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/05/2024 às 00:53
+-- Tempo de geração: 03/06/2024 às 23:37
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bdclinicapi`
 --
-CREATE DATABASE IF NOT EXISTS `bdclinicapi` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `bdclinicapi`;
 
 DELIMITER $$
 --
@@ -89,6 +87,32 @@ CREATE TABLE `efeitoscolaterais` (
   `data_descricao` timestamp NOT NULL DEFAULT current_timestamp(),
   `id_paciente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `funcionarios`
+--
+
+CREATE TABLE `funcionarios` (
+  `idFuncionario` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `idade` int(3) NOT NULL,
+  `sexo` char(1) NOT NULL,
+  `dataContratacao` date NOT NULL,
+  `dataSaida` date DEFAULT NULL,
+  `cpf` varchar(11) NOT NULL,
+  `senha` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `funcionarios`
+--
+
+INSERT INTO `funcionarios` (`idFuncionario`, `nome`, `idade`, `sexo`, `dataContratacao`, `dataSaida`, `cpf`, `senha`) VALUES
+(1, 'Alice Santos', 30, 'F', '2022-01-15', NULL, '12345678901', 'senha123'),
+(2, 'Bruno Oliveira', 45, 'M', '2020-05-20', '2023-05-20', '23456789012', 'senha456'),
+(3, 'Carla Ferreira', 28, 'F', '2021-09-01', NULL, '34567890123', 'senha789');
 
 -- --------------------------------------------------------
 
@@ -185,6 +209,13 @@ ALTER TABLE `efeitoscolaterais`
   ADD KEY `id_paciente` (`id_paciente`);
 
 --
+-- Índices de tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  ADD PRIMARY KEY (`idFuncionario`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
+
+--
 -- Índices de tabela `medicamentosconsulta`
 --
 ALTER TABLE `medicamentosconsulta`
@@ -221,6 +252,12 @@ ALTER TABLE `prescricao`
 --
 ALTER TABLE `efeitoscolaterais`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `funcionarios`
+--
+ALTER TABLE `funcionarios`
+  MODIFY `idFuncionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `medicamentosconsulta`

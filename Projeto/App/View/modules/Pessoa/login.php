@@ -25,6 +25,8 @@
                 <input type="radio" id="Pessoa" value="Pessoa" name="tipo" required>
                 <label>Médico</label>
                 <input type="radio" id="Medico" value="Medico" name="tipo" required>
+                <label>Funcionario</label>
+                <input type="radio" id="Funcionario" value="Funcionario" name="tipo" required>
             </div>
             <button type="submit">Iniciar sessão</button>
             <button type="button" onclick="window.location.href='/'">Voltar</button>

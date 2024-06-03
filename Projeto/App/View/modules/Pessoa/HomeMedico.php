@@ -257,7 +257,7 @@ $(document).ready(function(){
     <!-- Definição do título da página -->
     <title>Receita Médica</title>
     <!-- Inclusão do arquivo de estilo CSS -->
-    <link rel="stylesheet" href="../css/opcreceita.css">
+    <link rel="stylesheet" href="../css/receita.css">
 </head>
 
 <body>

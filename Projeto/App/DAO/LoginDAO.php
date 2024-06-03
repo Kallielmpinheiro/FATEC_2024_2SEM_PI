@@ -25,7 +25,11 @@ class LoginDAO extends PessoaDAO
             $_SESSION["tipo_usuario"] = 'Medico';
             $redirect = "/telaM";
             
-        } 
+        } elseif($tipo == 'Funcionario'){
+            $sql = "SELECT f.idFuncionario,f.nome,f.cpf,f.senha from funcionarios f where f.cpf = ? and f.senha = ?";
+            $_SESSION["tipo_usuario"] = 'Funcionario';
+            $redirect = "/telaF";
+        }
     
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->cpf);
