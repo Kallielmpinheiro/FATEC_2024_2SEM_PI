@@ -1,0 +1,73 @@
+
+hr {
+    display: none;
+}
+
+body {
+    background-color: #f8f9fa; /* Cinza claro */
+    color: #333; /* Texto preto */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #1a8cff; /* Azul */
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #39ff14; /* Verde */
+    color: #fff;
+}
+
+.navbar-brand img {
+    height: 48px;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-container, .history-container {
+    display: none;
+}
+
+.form-container.active, .history-container.active {
+    display: block;
+}
+
+.form-container {
+    margin-bottom: 50px; /* Espaçamento adicional entre o formulário e o rodapé */
+}
+
+.history-container .form-control {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.history-container .btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto 0;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.footer {
+    margin-top: 50px;
+}
