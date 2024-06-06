@@ -13,8 +13,27 @@
         }
         public function insert(PessoaModel $model)
         {
-            #essa string sql vai ser processada, um preparo pra ser executada, evitando injeção de sql
-            $sql = "INSERT INTO paciente(nome, sobrenome, cpf, cep, estado, rua, cidade, numero, planoSaude, tipoPessoa, senha, medico_id) Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                  
+                    // Primeiro, vamos recuperar o medico_id com base no NumCRM fornecido
+            $sqlMedico = "SELECT id FROM medico WHERE NumCRM = ?";
+            $stmtMedico = $this->conexao->prepare($sqlMedico);
+            $stmtMedico->bindValue(1, $model->medico_CRM);
+            $stmtMedico->execute();
+
+            // Buscar o resultado
+            $medico = $stmtMedico->fetch(PDO::FETCH_ASSOC);
+
+            // Verificar se o médico foi encontrado
+            if ($medico === false) {
+                throw new Exception('Médico não encontrado');
+            }
+
+            // Recuperar o id do médico
+            $medico_id = $medico['id'];
+
+            // Agora, vamos inserir o novo paciente
+            $sql = "INSERT INTO paciente(nome, sobrenome, cpf, cep, estado, rua, cidade, numero, planoSaude, tipoPessoa, senha, medico_id) 
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(1, $model->nome);
@@ -28,17 +47,32 @@
             $stmt->bindValue(9, $model->PlanoSaude);
             $stmt->bindValue(10, $model->tipoPessoa);
             $stmt->bindValue(11, $model->senha);
-            $stmt->bindValue(12, $model->medico_id);
-
+            $stmt->bindValue(12, $medico_id);
 
             $stmt->execute();
-            
-
-            
+                    
         }
 
         public function update(PessoaModel $model)
         {
+
+           
+                      $sqlMedico = "SELECT id FROM medico WHERE NumCRM = ?";
+                      $stmtMedico = $this->conexao->prepare($sqlMedico);
+                      $stmtMedico->bindValue(1, $model->medico_CRM);
+                      $stmtMedico->execute();
+          
+                      // Buscar o resultado
+                      $medico = $stmtMedico->fetch(PDO::FETCH_ASSOC);
+          
+                      // Verificar se o médico foi encontrado
+                      if ($medico === false) {
+                          throw new Exception('Médico não encontrado');
+                      }
+          
+                      // Recuperar o id do médico
+                      $medico_id = $medico['id'];
+          
             
 
             $sql = "UPDATE paciente SET nome = ?, sobrenome = ?, cpf =?, cep = ?, estado = ?, rua = ?, cidade = ?, numero = ?, planoSaude = ?, tipoPessoa = ?, senha = ?, medico_id = ? where idPaciente = ? ";
@@ -55,10 +89,22 @@
             $stmt->bindValue(9, $model->PlanoSaude);
             $stmt->bindValue(10, $model->tipoPessoa);
             $stmt->bindValue(11, $model->senha);
-            $stmt->bindValue(12, $model->medico_id);
+            $stmt->bindValue(12, $medico_id);
             $stmt->bindValue(13, $model->idPaciente);
 
             $stmt->execute();
+        }
+
+        public function selectUser($cpf)
+        {
+            include_once 'App/Model/PessoaModel.php';
+            $sql = "SELECT * FROM paciente WHERE cpf = ?";
+        
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(1, $cpf); //
+        
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS, 'PessoaModel'); // Use FETCH_CLASS para retornar objetos do tipo PessoaModel
         }
 
         public function select($medico_id)

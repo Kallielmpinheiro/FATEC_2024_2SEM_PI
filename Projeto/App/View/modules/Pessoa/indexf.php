@@ -1,3 +1,17 @@
+
+<?php 
+
+if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
+    // Redireciona para a página inicial
+    header("Location: /");
+    exit();
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -22,89 +36,30 @@
         </nav>
     </header>
 
-    <main class="container flex-grow-1">
-        <section id="form-container" class="form-container active">
-            <form action="" method="post" class="p-4 border rounded shadow bg-white mt-4" enctype="multipart/form-data">
-                <h2 class="mb-4">Formulário de Cadastro de pacientes</h2>
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-6">
-                        <label for="nome">Nome</label>
-                        <input type="text" class="form-control" name="nome" required id="nome" placeholder="Nome">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="sobrenome">Sobrenome</label>
-                        <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
-                    </div>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-6">
-                        <label for="cpf">CPF</label>
-                        <input type="text" class="form-control" name="cpf" id="cpf" placeholder="CPF">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="cep">CEP</label>
-                        <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
-                    </div>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-4">
-                        <label for="estado">Estado</label>
-                        <input type="text" class="form-control" name="estado" id="estado" placeholder="Estado">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="cidade">Cidade</label>
-                        <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="rua">Rua</label>
-                        <input type="text" class="form-control" name="rua" id="rua" placeholder="Rua">
-                    </div>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-6">
-                        <label for="numero">Número</label>
-                        <input type="text" class="form-control" name="numero" id="numero" placeholder="Número">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="planoSaude">Plano de Saúde</label>
-                        <select class="form-control" name="planoSaude" id="planoSaude">
-                            <option value="" selected disabled>Selecione o Plano de Saúde</option>
-                            <option value="sulamerica">SulAmérica Saúde</option>
-                            <option value="amil">Amil</option>
-                            <option value="bradesco">Bradesco Saúde</option>
-                            <option value="unimed">Unimed</option>
-                            <option value="goldencross">Golden Cross</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row mb-3">
-                    <div class="form-group col-md-6">
-                        <label for="tipoPessoa">Tipo de Usuário</label>
-                        <select class="form-control" name="tipoPessoa" id="tipoPessoa">
-                            <option value="" selected disabled>Selecione a Situação</option>
-                            <option value="dependente">Dependente</option>
-                            <option value="pessoa">Pessoa</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="imagem">Foto do Paciente</label>
-                        <input type="file" class="form-control" name="imagem" id="imagem">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                </div>
-            </form>
-        </section>
+    
 
         <section id="history-container" class="history-container">
+            <form action= "/ConsultarPaciente" method="post">
             <div class="p-4 border rounded shadow bg-white mt-4 text-center">
                 <h2 class="mb-4">Histórico de Pacientes</h2>
                 <p>Digite o CPF do paciente para buscar o histórico.</p>
-                <input type="text" class="form-control mb-3" placeholder="CPF">
+                <input type="text" class="form-control mb-3" placeholder="CPF" name="cpf">
                 <button class="btn btn-primary">Buscar</button>
             </div>
+            </form>
         </section>
+        <a href="/pessoa/form" class="box1">
+            <i class="fas fa-comments"></i>
+            <h2>Cadastrar Paciente</h2>
+            <p>Cadastre, atualize e exclua.</p>
+        </a>
+
+
+        <a href="/logout" class="box1">
+            <i class="fas fa-history"></i>
+            <h2>logout</h2>
+      
+        </a>
     </main>
 
     <footer class="bg-dark text-light py-4 footer">
@@ -163,7 +118,6 @@
 
 <?php
 
-$uploadDir = "C:/xampp/htdocs/testeimg/";
 
 function consultarCEP($cep)
 {
@@ -187,59 +141,5 @@ function consultarCEP($cep)
     $data = json_decode($response, true);
 
     return $data;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["imagem"])) {
-    $nome = $_POST["nome"];
-    $sobrenome = $_POST["sobrenome"];
-    $cpf = $_POST["cpf"];
-    $cep = $_POST["cep"];
-    $plano = $_POST["planoSaude"];
-    $tipo_usuario = $_POST["tipoPessoa"];
-    $estado = $_POST["estado"];
-    $cidade = $_POST["cidade"];
-    $rua = $_POST["rua"];
-    $numero = $_POST["numero"];
-    $imagem = $uploadDir . basename($_FILES["imagem"]["name"]);
-    $senha_gerada = bin2hex(random_bytes(4)); 
-
-    $mysqli = new mysqli("localhost", "root", "", "dbclinicapi");
-
-    $sql_verificar = "SELECT id FROM pacientes WHERE cpf = '$cpf'";
-    $result_verificar = $mysqli->query($sql_verificar);
-    if ($result_verificar && $result_verificar->num_rows > 0) {
-        echo "Este paciente já está cadastrado.";
-    } else {
-        $permitidos = array('png', 'jpg', 'jpeg');
-        $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
-        if (in_array($extensao, $permitidos)) {
-            if ($_FILES["imagem"]["size"] > 500000) {
-                echo "Tamanho da imagem é muito grande. Por favor, escolha uma imagem menor.";
-            } else {
-                $uploadFile = $uploadDir . basename($_FILES["imagem"]["name"]);
-                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $uploadFile)) {
-                    $cep_data = consultarCEP($cep);
-                    if ($cep_data) {
-                        $estado = $cep_data['uf'];
-                        $cidade = $cep_data['localidade'];
-                        $rua = $cep_data['logradouro'];
-                    } else {
-                        echo "Erro ao consultar o CEP.";
-                    }
-
-                    $sql = "INSERT INTO pacientes (nome, sobrenome, cpf, cep, estado, cidade, rua, numero, plano, tipo_usuario, imagem, senha_gerada) VALUES ('$nome', '$sobrenome', '$cpf', '$cep', '$estado', '$cidade', '$rua', '$numero', '$plano', '$tipo_usuario', '$imagem', '$senha_gerada')";
-                    if ($mysqli->query($sql) === TRUE) {
-                        echo "<script>alert('Paciente cadastrado com sucesso!\\nCPF: $cpf\\nSenha: $senha_gerada');</script>";
-                    } else {
-                        echo "Erro ao adicionar o paciente: " . $mysqli->error;
-                    }
-                } else {
-                    echo "Erro ao mover o arquivo de imagem.";
-                }
-            }
-        } else {
-            echo "Formato de arquivo não suportado. Por favor, envie uma imagem no formato PNG, JPG ou JPEG.";
-        }
-    }
 }
 ?>

@@ -5,6 +5,8 @@
        public $idPaciente, $nome, $sobrenome, $cpf, $cep, $estado, $cidade, $rua, $numero, $PlanoSaude, $tipoPessoa, $senha;
        public $descricao;
 
+       public $medico_CRM;
+
        public $medico_id;
 
        
@@ -70,6 +72,17 @@
             $dao = new PessoaDAO();
         
             $this->rows = $dao->select($medico_id);
+        }
+
+
+
+
+        public function getByCPF($cpf)
+        {
+            include 'App/DAO/PessoaDAO.php';
+            $dao = new PessoaDAO();
+        
+            $this->rows = $dao->selectUser($cpf);
         }
         
 
