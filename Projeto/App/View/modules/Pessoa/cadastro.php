@@ -7,12 +7,6 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 }
 
 
-//Caminho onde as imagens serão armazenadas
-$uploadDir = "C:/xampp/htdocs/testeimg/";
-
-
-
-
 
 function consultarCEP($cep)
 {
@@ -48,65 +42,6 @@ function consultarCEP($cep)
     return $data;
 }
 
-/*
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["imagem"])) {
-
-    $nome = $_POST["nome"];
-    $sobrenome = $_POST["sobrenome"];
-    $cpf = $_POST["cpf"];
-    $cep = $_POST["cep"];
-    $plano = $_POST["plano"];
-    $tipo_usuario = $_POST["tipo_usuario"];
-    $estado = $_POST["estado"];
-    $cidade = $_POST["cidade"];
-    $rua = $_POST["rua"];
-    $numero = $_POST["numero"];
-    $imagem = $uploadDir . basename($_FILES["imagem"]["name"]);
-    $senha_gerada = gerarSenha(8);
-
-    $sql_verificar = "SELECT id FROM pacientes WHERE cpf = '$cpf'";
-    $result_verificar = $mysqli->query($sql_verificar);
-    if ($result_verificar && $result_verificar->num_rows > 0) {
-        echo "Este paciente já está cadastrado.";
-    } else {
-        // Verifica se é uma imagem e se o tamanho está dentro do limite
-        $permitidos = array('png', 'jpg', 'jpeg');
-        $extensao = strtolower(pathinfo($imagem, PATHINFO_EXTENSION));
-        if (in_array($extensao, $permitidos)) {
-            if ($_FILES["imagem"]["size"] > 500000) {
-                echo "Tamanho da imagem é muito grande. Por favor, escolha uma imagem menor.";
-            } else {
-                // Movendo a imagem para o diretório de upload
-                $uploadFile = $uploadDir . basename($_FILES["imagem"]["name"]);
-                if (move_uploaded_file($_FILES["imagem"]["tmp_name"], $uploadFile)) {
-                    // Consultar CEP e preencher os campos de estado, cidade e rua
-                    $cep_data = consultarCEP($cep);
-                    if ($cep_data) {
-                        $estado = $cep_data['uf'];
-                        $cidade = $cep_data['localidade'];
-                        $rua = $cep_data['logradouro'];
-                    } else {
-                        echo "Erro ao consultar o CEP.";
-                    }
-
-                    // Inserir dados do paciente no banco de dados
-                    $sql = "INSERT INTO pacientes (nome, sobrenome, cpf, cep, estado, cidade, rua, numero, plano, tipo_usuario, imagem, senha_gerada) VALUES ('$nome', '$sobrenome', '$cpf', '$cep', '$estado', '$cidade', '$rua', '$numero', '$plano', '$tipo_usuario', '$imagem', '$senha_gerada')";
-                    if ($mysqli->query($sql) === TRUE) {
-                        // Alerta mostrando o CPF e a senha gerada
-                        echo "<script>alert('Paciente cadastrado com sucesso!\\nCPF: $cpf\\nSenha: $senha_gerada');</script>";
-                    } else {
-                        echo "Erro ao adicionar o paciente: " . $mysqli->error;
-                    }
-                } else {
-                    echo "Erro ao mover o arquivo de imagem.";
-                }
-            }
-        } else {
-            echo "Formato de arquivo não suportado. Por favor, envie uma imagem no formato PNG, JPG ou JPEG.";
-        }
-    }
-}
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,13 +120,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["imagem"])) {
                         <option value="pessoa">Pessoa</option>
                     </select>
                 </div>
+
+
+                <div class="form-group col-md-4">
+                        <label for="rua">CRM</label>
+                        <input type="number" class="form-control" name="CRM" id="CRM" placeholder="CRM" required>
+                    </div>
                 <?php 
-                /*
-                <div class="col-md-6 mb-3">
-                    <label for="imagem" class="form-label">Foto do Paciente</label>
-                    <input type="file" class="form-control" name="imagem" id="imagem">
-                </div>
-                */
+               
                 ?>
                 
             </div>

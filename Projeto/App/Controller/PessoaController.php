@@ -32,6 +32,30 @@
         }
 
 
+        public static function HomeFuncionario()
+        {
+            include 'App/view/modules/Pessoa/indexf.php';
+        }
+
+        public static function ConsultarUser()
+        {
+            include_once 'App/Model/PessoaModel.php';
+
+            
+
+
+
+            $model = new PessoaModel();
+            $model->cpf = $_POST['cpf'];
+            $model->getByCPF($model->cpf);
+
+
+            include 'App/view/modules/Pessoa/DadosPaciente.php';
+
+           
+        }
+
+
 
 
 
@@ -74,14 +98,16 @@
             $model->numero = $_POST['numero'];
             $model->tipoPessoa = $_POST['tipoPessoa'];
             $model->PlanoSaude = $_POST['planoSaude'];
-            $model->medico_id = Auth::getLoggedInUserId();
+            $model->medico_CRM = $_POST['CRM'];
          
           
             
+          
             $model->save();
+           
 
 
-            header("Location: /telaM");
+            header("Location: /telaF");
         }
 
 

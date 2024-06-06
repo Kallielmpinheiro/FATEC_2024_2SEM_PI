@@ -31,17 +31,17 @@ switch ($url) {
 
     case '/pessoa/form':
 
-        Auth::verificarTipoUsuario('Medico');
+        Auth::verificarTipoUsuario('Funcionario');
   
         PessoaController::form();
-        break;
+    break;
 
     case '/pessoa/form/save':
 
-        Auth::verificarTipoUsuario('Medico');
+        Auth::verificarTipoUsuario('Funcionario');
 
         PessoaController::save();
-        break;
+    break;
 
     // Telas
     case '/':
@@ -53,14 +53,30 @@ switch ($url) {
         Auth::verificarTipoUsuario('Pessoa');
  
         PessoaController::HomePaciente();
-        break;
+    break;
 
-        case '/paciente':
+    case '/paciente':
 
             Auth::verificarTipoUsuario('Pessoa');
      
             PessoaController::saveDescription();
-            break;
+    break;
+
+    case '/telaF':
+
+            Auth::verificarTipoUsuario('Funcionario');
+         
+            PessoaController::HomeFuncionario();
+    break;
+
+    case '/ConsultarPaciente':
+
+        Auth::verificarTipoUsuario('Funcionario');
+     
+        PessoaController::ConsultarUser();
+    break;
+
+
     
 
     case '/telaM':
@@ -68,7 +84,7 @@ switch ($url) {
         Auth::verificarTipoUsuario('Medico');
 
         PessoaController::HomeMedico();
-        break;
+    break;
 
     case '/medicamento/formConsulta':
 
