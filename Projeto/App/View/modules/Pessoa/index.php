@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I9 Solution</title>
     <!-- Ícone da página -->
-    <link rel="icon" href="App/View/modules/img/log1.png" type="image/x-icons">
+    <link rel="icon" href="../img/log1.png" type="image/x-icons">
     <!-- Estilos -->
-    <link rel="stylesheet" href="App/View/modules/css/telaprincipal.css">
+    <link rel="stylesheet" href="../css/telaprincipal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" 
     integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,8 +24,8 @@
                     <!-- Links de navegação -->
                     <li><a href="#">INÍCIO</a></li>
                     <li><a href="#sobre-nos">SOBRE</a></li>
-                    <li><a href="#">CONTATO</a></li>
-                    <li><a href="#">DEPARTAMENTO</a></li>
+                    <li><a href="#contato">CONTATO</a></li>
+                    <li><a href="#departamentos">DEPARTAMENTO</a></li>
                     <li><a href="/form/login">Área do Usuário</a></li>
                 </ul>
             </div>
@@ -44,17 +44,22 @@
                     <a href="" class="btn btn1">Visite Para Saber Mais</a>
                 </div>
             </div>
-            <!-- Slideshow -->
-            <div class="slideshow">
-                <a href="seu-link1">
-                    <img src="../img/pic4.jpg" alt="Imagem 1">
-                </a>
-                <a href="seu-link2">
-                    <img src="imagem2.jpg" alt="Imagem 2">
-                </a>
-                <a href="seu-link3">
-                    <img src="imagem3.jpg" alt="Imagem 3">
-                </a>
+            <!-- Cards -->
+            <div class="card-container">
+                <div class="card">
+                    <a href="seu-link1">
+                        <img src="../img/imgslide1 (2).jpg" alt="Imagem 1">
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="seu-link2">
+                        <img src="../img/imgslide2 (2).jpg" alt="Imagem 2">
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="seu-link3">
+                        <img src="../img/imgslide3 (2).jpg" alt="Imagem 3">
+                    </a>
                 </div>
             </div>
               
@@ -153,7 +158,7 @@
         </div>
     </section>
     <!-- Seção de departamentos -->
-    <section class="department">
+    <section class="department" id="departamentos">
         <!-- Título da seção -->
         <h1 class="heading">Nossos Departamentos</h1>
         <!-- Linha de departamentos -->
@@ -177,7 +182,7 @@
         </div>
     </section>
     <!-- Rodapé da página -->
-    <footer>
+    <footer id="contato">
         <!-- Seções do rodapé -->
         <div class="footer-sec">
             <div class="sec">
@@ -238,6 +243,34 @@
             });
         });
     </script>
+
+<script>
+    const cards = document.querySelectorAll('.card');
+    let currentIndex = 0;
+
+    function showCard(index) {
+        cards.forEach((card, i) => {
+            if (i === index) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function nextCard() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        showCard(currentIndex);
+    }
+
+    function startCarousel() {
+        setInterval(nextCard, 3000); // Altera o card a cada 3 segundos (3000 milissegundos)
+    }
+
+    // Inicia o carrossel quando a página carrega
+    window.addEventListener('load', startCarousel);
+</script>
+
 </body>
 </html>
 

@@ -48,7 +48,6 @@ Benefícios Esperados:
 
 Para mais informações ou dúvidas, entre em contato conosco:
 - KALLIEL MARCOS PINHEIRO-https://github.com/Kallielmpinheiro
-- LUIZ ANTONIO DE FREITAS-https://github.com/Lafreit
 - LUIZ HENRIQUE SIMIONATO VICENTE-https://github.com/luizsimi
 - MARCELO FERREIRA MIRANDA-https://github.com/MirandaSoulcelo
 - VICTOR MANOEL MARTINS-https://github.com/heyvitin
