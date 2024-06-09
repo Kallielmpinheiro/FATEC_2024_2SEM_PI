@@ -15,6 +15,15 @@
         
         public static function HomePaciente()
         {
+          
+            include_once 'App/Model/MedicamentoModel.php';
+            include_once 'App/Model/PessoaModel.php';
+          
+            $model = new MedicamentoModel();
+            $id_paciente = Auth::getLoggedInUserId();
+            $model->getAllPMRows($id_paciente);
+
+
             include 'App/view/modules/Pessoa/paciente.php';
         }
         public static function HomeMedico()
@@ -66,10 +75,11 @@
           
             if(isset($_GET['id']))
                 $model = $model->getById((int) $_GET['id']);//me ajuda a evitar ainda mais sql injection 
+           
             
            
             
-
+            
             include 'App/View/modules/Pessoa/cadastro.php';
         }
 

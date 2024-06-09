@@ -17,21 +17,25 @@
        
        public function __construct()
        {
-        
-        $this->senha = $this->gerarSenha($tamanho = 8);
+               $this->senha = $this->gerarSenha($tamanho = 8);
+           
        }
-
-
        protected function gerarSenha($tamanho = 8)
        {
+           // Se a senha já foi definida, retorna ela mesma
+           if (!is_null($this->senha)) {
+               return $this->senha;
+           }
+       
+           // Se a senha for null, gera uma nova senha
            $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
            $senha = '';
            for ($i = 0; $i < $tamanho; $i++) {
                $senha .= $caracteres[rand(0, strlen($caracteres) - 1)];
            }
+           // Retorna a nova senha gerada
            return $senha;
        }
-
 
        public function save()
         {

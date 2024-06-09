@@ -71,100 +71,31 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
-                                        <th>Nome <i class="fa fa-sort"></i></th>
-                                        <th>Concentração</th>
-                                        <th>Fórmula Farmacêutica <i class="fa fa-sort"></i></th>
+                                        <th>Medicamento</th>
+                                        <th>tipo <i class="fa fa-sort"></i></th>
+                                        <th>uso</th>
+                                        <th>dosagem <i class="fa fa-sort"></i></th>
                                         <th>Esquema de tratamento</th>
-                                        <th>Imprimir</th>
+                                        <th>data_prescrição</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>0001</td>
-                                        <td>Amoxicilina</td>
-                                        <td>500 mg</td>
-                                        <td>TAB</td>
-                                        <td>60 Comprimidos</td>
-                                        <td>
-                                            <a href="#" class="view" title="Ver" data-toggle="tooltip">
-                                                <button onclick="imprimirPagina();"><i class='fa fa-print'></i></button>
-                                            </a>
-                                            <script>
-                                                function imprimirPagina() {
-                                                    window.print();
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>0002</td>
-                                        <td>Cefalexina</td>
-                                        <td>250 mg</td>
-                                        <td>Líquido Oral</td>
-                                        <td>1 Frasco</td>
-                                        <td>
-                                            <a href="#" class="view" title="Ver" data-toggle="tooltip">
-                                                <button onclick="imprimirPagina();"><i class='fa fa-print'></i></button>
-                                            </a>
-                                            <script>
-                                                function imprimirPagina() {
-                                                    window.print();
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>0003</td>
-                                        <td>Loratadina</td>
-                                        <td>10 mg</td>
-                                        <td>TAB</td>
-                                        <td>5 Comprimidos</td>
-                                        <td>
-                                            <a href="#" class="view" title="Ver" data-toggle="tooltip">
-                                                <button onclick="imprimirPagina();"><i class='fa fa-print'></i></button>
-                                            </a>
-                                            <script>
-                                                function imprimirPagina() {
-                                                    window.print();
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>0004</td>
-                                        <td>Omeprazol</td>
-                                        <td>20 mg</td>
-                                        <td>TAB</td>
-                                        <td>30 Comprimidos</td>
-                                        <td>
-                                            <a href="#" class="view" title="Ver" data-toggle="tooltip">
-                                                <button onclick="imprimirPagina();"><i class='fa fa-print'></i></button>
-                                            </a>
-                                            <script>
-                                                function imprimirPagina() {
-                                                    window.print();
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>0005</td>
-                                        <td>Paracetamol</td>
-                                        <td>500 mg</td>
-                                        <td>TAB</td>
-                                        <td>28 Comprimidos</td>
-                                        <td>
-                                            <a href="#" class="view" title="Ver" data-toggle="tooltip">
-                                                <button onclick="imprimirPagina();"><i class='fa fa-print'></i></button>
-                                            </a>
-                                            <script>
-                                                function imprimirPagina() {
-                                                    window.print();
-                                                }
-                                            </script>
-                                        </td>
-                                    </tr>        
+                                <?php
+                    if(isset($model) && $model !== null && property_exists($model, 'rows') && is_array($model->rows)) {
+                        foreach($model->rows as $item): ?>
+                            <tr>
+                                <td><?= $item->nomeMedicamento ?></td>
+                                <td><?= $item->tipo?></td>
+                                <td><?= $item->uso ?></td>
+                                <td><?= $item->dosagem ?></td>
+                                <td><?= $item->instrucao?></td>
+                                <td><?= $item->data_prescricao?></td>
+                            </tr>
+                        <?php endforeach;
+                        } else {
+                            echo 'Nenhum medicamento cadastrado';
+                        }
+                        ?>
                                 </tbody>
                             </table>
                         </div>

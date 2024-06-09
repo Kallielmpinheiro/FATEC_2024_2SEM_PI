@@ -75,7 +75,7 @@
           
             
 
-            $sql = "UPDATE paciente SET nome = ?, sobrenome = ?, cpf =?, cep = ?, estado = ?, rua = ?, cidade = ?, numero = ?, planoSaude = ?, tipoPessoa = ?, senha = ?, medico_id = ? where idPaciente = ? ";
+            $sql = "UPDATE paciente SET nome = ?, sobrenome = ?, cpf =?, cep = ?, estado = ?, rua = ?, cidade = ?, numero = ?, planoSaude = ?, tipoPessoa = ?, medico_id = ? where idPaciente = ? ";
 
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindValue(1, $model->nome);
@@ -88,9 +88,8 @@
             $stmt->bindValue(8, $model->numero);
             $stmt->bindValue(9, $model->PlanoSaude);
             $stmt->bindValue(10, $model->tipoPessoa);
-            $stmt->bindValue(11, $model->senha);
-            $stmt->bindValue(12, $medico_id);
-            $stmt->bindValue(13, $model->idPaciente);
+            $stmt->bindValue(11, $medico_id);
+            $stmt->bindValue(12, $model->idPaciente);
 
             $stmt->execute();
         }
