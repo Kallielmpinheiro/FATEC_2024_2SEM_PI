@@ -62,6 +62,14 @@ switch ($url) {
             PessoaController::saveDescription();
     break;
 
+
+    case '/medicamento/Sintomas':
+
+        Auth::verificarTipoUsuario('Medico');
+ 
+        MedicamentoController::Sintomas();
+    break;
+
     case '/telaF':
 
             Auth::verificarTipoUsuario('Funcionario');
