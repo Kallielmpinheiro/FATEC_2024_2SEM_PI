@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <!-- Metadados -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I9 Solution</title>
     <!-- Ícone da página -->
-    <link rel="icon" href="../img/log1.png" type="image/x-icons">
+    <link rel="icon" href="App/View/modules/img/log1.png" type="image/x-icons">
     <!-- Estilos -->
-    <link rel="stylesheet" href="../css/telaprincipal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" 
-    integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="App/View/modules/css/telaprincipal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <!-- Seção de fundo da página -->
     <section class="background">
         <!-- Barra de navegação -->
         <nav class="navbar">
-            <a href="#" class="logo"><img src="../img/log1.png" alt=""></a>
+            <a href="#" class="logo"><img src="App/View/modules/img/log1.png" alt=""></a>
             <div class="navbar-items h-class">
                 <ul class="nav v-class">
                     <!-- Links de navegação -->
@@ -48,21 +48,21 @@
             <div class="card-container">
                 <div class="card">
                     <a href="seu-link1">
-                        <img src="../img/imgslide1 (2).jpg" alt="Imagem 1">
+                        <img src="App/View/modules/img/imgslide1 (2).jpg" alt="Imagem 1">
                     </a>
                 </div>
                 <div class="card">
                     <a href="seu-link2">
-                        <img src="../img/imgslide2 (2).jpg" alt="Imagem 2">
+                        <img src="App/View/modules/img/imgslide2 (2).jpg" alt="Imagem 2">
                     </a>
                 </div>
                 <div class="card">
                     <a href="seu-link3">
-                        <img src="../img/imgslide3 (2).jpg" alt="Imagem 3">
+                        <img src="App/View/modules/img/imgslide3 (2).jpg" alt="Imagem 3">
                     </a>
                 </div>
             </div>
-              
+
         </div>
     </section>
     <!-- Seção de serviços -->
@@ -145,7 +145,7 @@
         <!-- Linha de informações sobre a empresa -->
         <div class="row row1">
             <div class="left">
-                <img src="../img/pic2.jpg" alt="">
+                <img src="App/View/modules/img/pic2.jpg" alt="">
             </div>
             <div class="right">
                 <!-- Descrição da empresa -->
@@ -163,22 +163,22 @@
         <h1 class="heading">Nossos Departamentos</h1>
         <!-- Linha de departamentos -->
         <div class="row">
-             <!-- Box de departamento 1 -->
-             <div class="box3">
+            <!-- Box de departamento 1 -->
+            <div class="box3">
                 <h1>Equipe Clínica</h1>
-             </div>
-             <!-- Box de departamento 2 -->
-             <div class="box3">
+            </div>
+            <!-- Box de departamento 2 -->
+            <div class="box3">
                 <h1>Assistência ao Paciente</h1>
-             </div>
-             <!-- Box de departamento 3 -->
-             <div class="box3">
+            </div>
+            <!-- Box de departamento 3 -->
+            <div class="box3">
                 <h1>Pesquisa Clínica e Farmacêutica</h1>
-             </div>
-             <!-- Box de departamento 4 -->
-             <div class="box3">
+            </div>
+            <!-- Box de departamento 4 -->
+            <div class="box3">
                 <h1>Desenvolvimento de Tecnologia Médica</h1>
-             </div>
+            </div>
         </div>
     </section>
     <!-- Rodapé da página -->
@@ -234,7 +234,7 @@
     <!-- JavaScript para rolagem suave -->
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
 
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -244,33 +244,33 @@
         });
     </script>
 
-<script>
-    const cards = document.querySelectorAll('.card');
-    let currentIndex = 0;
+    <script>
+        const cards = document.querySelectorAll('.card');
+        let currentIndex = 0;
 
-    function showCard(index) {
-        cards.forEach((card, i) => {
-            if (i === index) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
+        function showCard(index) {
+            cards.forEach((card, i) => {
+                if (i === index) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
-    function nextCard() {
-        currentIndex = (currentIndex + 1) % cards.length;
-        showCard(currentIndex);
-    }
+        function nextCard() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            showCard(currentIndex);
+        }
 
-    function startCarousel() {
-        setInterval(nextCard, 3000); // Altera o card a cada 3 segundos (3000 milissegundos)
-    }
+        function startCarousel() {
+            setInterval(nextCard, 3000); // Altera o card a cada 3 segundos (3000 milissegundos)
+        }
 
-    // Inicia o carrossel quando a página carrega
-    window.addEventListener('load', startCarousel);
-</script>
+        // Inicia o carrossel quando a página carrega
+        window.addEventListener('load', startCarousel);
+    </script>
 
 </body>
-</html>
 
+</html>

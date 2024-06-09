@@ -1,73 +1,153 @@
-
-hr {
-    display: none;
-}
-
+/* General Styles */
 body {
-    background-color: #f8f9fa; /* Cinza claro */
-    color: #333; /* Texto preto */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+header.bg-dark {
+    background-color: #343a40;
 }
 
-.btn-primary {
-    background-color: #1a8cff; /* Azul */
-    color: #fff;
+header a.navbar-brand img {
+    max-height: 50px;
 }
 
-.btn-secondary {
-    background-color: #39ff14; /* Verde */
-    color: #fff;
+.nav-link {
+    font-size: 16px;
+    text-decoration: none; /* Remove a decoração */
+    color: inherit; /* Usa a cor padrão do texto */
 }
 
-.navbar-brand img {
-    height: 48px;
+
+.nav-link:hover {
+    color: inherit; /* Mantém a cor do texto ao passar o mouse */
 }
 
-.form-control {
-    border: 1px solid #ccc;
+
+.main {
+    padding: 20px;
+    text-align: center; /* Centraliza os elementos filhos */
 }
 
-.form-group label {
-    font-weight: bold;
-}
-
-.form-container, .history-container {
-    display: none;
-}
-
-.form-container.active, .history-container.active {
-    display: block;
-}
-
-.form-container {
-    margin-bottom: 50px; /* Espaçamento adicional entre o formulário e o rodapé */
-}
-
-.history-container .form-control {
-    max-width: 400px;
+.container {
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.history-container .btn {
+.box1 {
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.box1:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.box1 i {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.box1 h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.box1 p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+footer.footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 40px 0;
+}
+
+footer h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.history-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.form-container {
+    display: none;
+}
+
+.active {
     display: block;
-    width: 100%;
+}
+
+.form-control {
     max-width: 400px;
-    margin: 20px auto 0;
+    margin: 0 auto 20px;
 }
 
-.flex-grow-1 {
-    flex-grow: 1;
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
-.footer {
-    margin-top: 50px;
+@media (max-width: 768px) {
+    .box1 {
+        width: 100%;
+        height: auto;
+        margin: 10px 0;
+    }
+
+    .nav {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
+    }
 }
+.link-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adicione margem na parte superior da div contendo os links */
+    margin-bottom: 20px; /* Adicione margem na parte inferior da div contendo os links */
+
+}
+
+.link-container .box1 {
+    margin: 0 10px; /* Adicione margens entre os links para espaçamento */
+}
+.history-container {
+    margin-bottom: 20px; /* Adicione margem na parte inferior da seção de busca do paciente */
+}
+
+.box1 a {
+    text-decoration: none; /* Remove a decoração */
+    color: inherit; /* Usa a cor padrão do texto */
+}
+
+.box1 a:hover {
+    color: inherit; /* Mantém a cor do texto ao passar o mouse */
+}
+

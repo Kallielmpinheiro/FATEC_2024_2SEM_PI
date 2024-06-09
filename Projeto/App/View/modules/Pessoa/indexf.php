@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 
 if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     // Redireciona para a página inicial
@@ -7,10 +6,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     exit();
 }
 
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,46 +16,45 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funcionario</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="App/View/modules/css/main.css">
 </head>
 
 <body class="font-sans">
     <header class="bg-dark text-light">
         <nav class="container d-flex justify-content-between align-items-center py-2">
-            <a href="#" class="navbar-brand"><img src="./log1.png" alt="Logo"></a>
+            <a href="#" class="navbar-brand"><img src="App/View/modules/img/log1.png" alt="Logo"></a>
             <ul class="nav">
-                <li class="nav-item"><a href="#opcao1" class="nav-link text-light"
-                        onclick="showSection('form-container')">Cadastrar pacientes</a></li>
-                <li class="nav-item"><a href="#opcao2" class="nav-link text-light"
-                        onclick="showSection('history-container')">Checar histórico</a></li>
+                <li class="nav-item"><a href="#opcao1" class="nav-link text-light" onclick="showSection('form-container')">Cadastrar pacientes</a></li>
+                <li class="nav-item"><a href="#opcao2" class="nav-link text-light" onclick="showSection('history-container')">Checar histórico</a></li>
             </ul>
         </nav>
     </header>
 
-    
 
-        <section id="history-container" class="history-container">
-            <form action= "/ConsultarPaciente" method="post">
+
+    <section id="history-container" class="history-container">
+        <form action="/ConsultarPaciente" method="post">
             <div class="p-4 border rounded shadow bg-white mt-4 text-center">
                 <h2 class="mb-4">Histórico de Pacientes</h2>
                 <p>Digite o CPF do paciente para buscar o histórico.</p>
                 <input type="text" class="form-control mb-3" placeholder="CPF" name="cpf">
                 <button class="btn btn-primary">Buscar</button>
             </div>
-            </form>
-        </section>
+        </form>
+    </section>
+    <div class="link-container">
         <a href="/pessoa/form" class="box1">
             <i class="fas fa-comments"></i>
             <h2>Cadastrar Paciente</h2>
-            <p>Cadastre, atualize e exclua.</p>
         </a>
 
 
         <a href="/logout" class="box1">
             <i class="fas fa-history"></i>
             <h2>logout</h2>
-      
+
         </a>
+    </div>
     </main>
 
     <footer class="bg-dark text-light py-4 footer">
