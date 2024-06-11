@@ -167,7 +167,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
         }
         ?>
 
-        <a href="/telaM">Voltar</a>
+    <a href="/telaM" class="btn btn-primary" >Voltar</a>
     </div>
 </body>
 </html>

@@ -9,9 +9,6 @@
         public $instrucao;
         public $CRM;
 
-        public $id;
-
-        public $result;
 
 
         

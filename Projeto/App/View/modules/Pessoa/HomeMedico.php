@@ -146,7 +146,7 @@ if (isset($_GET['medicamento'])) {
                                 <tbody>
                                     <?php foreach ($model->rows as $item) : ?>
                                         <tr>
-                                            <td><a href="/pessoa/form?id=<?= $item->idPaciente ?>"> <?= $item->nome ?></td>
+                                            <td><?= $item->nome ?></td>
                                             <td><?= $item->sobrenome ?></td>
                                             <td><?= $item->cpf ?></td>
                                             <td><?= $item->cep ?></td>

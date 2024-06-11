@@ -26,6 +26,20 @@
 
             include 'App/view/modules/Pessoa/paciente.php';
         }
+
+        public static function formPaciente()
+        {
+            include_once 'App/Model/PessoaModel.php';
+            $modelP = new PessoaModel();
+            $loggedInUserId = Auth::getLoggedInUserId();
+        
+        
+            $modelP->getById($loggedInUserId);
+        
+            // Debug: Verifique se os dados do modelo foram carregados
+        
+            include 'App/View/modules/Pessoa/AtualizarDados.php';
+        }
         public static function HomeMedico()
         {
             include_once 'App/Model/MedicamentoModel.php';
@@ -121,14 +135,45 @@
         }
 
 
-        public static function delete()
-        {
-            include 'App/Model/PessoaModel.php';
-            $model = new PessoaModel();
-            $model->delete((int) $_GET['id']);
 
-            header("location: /telaM");
+
+        public static function AtualizarPuser()
+        {
+
+
+
+
+
+            include 'App/Model/PessoaModel.php';
+
+            
+
+            $model = new PessoaModel();
+            $model->idPaciente =$_POST['idPaciente'];
+            $model->nome = $_POST['nome'];
+            $model->sobrenome = $_POST['sobrenome'];
+            $model->cpf = $_POST['cpf'];
+            $model->cep = $_POST['cep'];
+            $model->estado = $_POST['estado'];
+            $model->cidade = $_POST['cidade'];
+            $model->rua = $_POST['rua'];
+            $model->numero = $_POST['numero'];
+            $model->PlanoSaude = $_POST['planoSaude'];
+            $model->senha = $_POST['senha'];
+         
+          
+
+          
+           $model->save();
+
+           header("location: /telaP");
+
+           
+           
+
+
         }
+
 
 
 

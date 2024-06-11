@@ -4,11 +4,6 @@
     {
 
         
-        public static function form()
-        {
-            include 'App/View/modules/Prescricao/CadastrarPrescricao.php';
-        }
-
 
         public static function save()
         {

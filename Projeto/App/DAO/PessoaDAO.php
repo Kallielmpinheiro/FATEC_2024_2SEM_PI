@@ -94,6 +94,31 @@
             $stmt->execute();
         }
 
+
+
+        public function updateUserPaciente(PessoaModel $model)
+        {
+
+          
+            
+
+            $sql = "UPDATE paciente SET nome = ?, sobrenome = ?, cep = ?, estado = ?, rua = ?, cidade = ?, numero = ?, planoSaude = ?, senha = ? where idPaciente = ? ";
+
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(1, $model->nome);
+            $stmt->bindValue(2, $model->sobrenome);
+            $stmt->bindValue(3, $model->cep);
+            $stmt->bindValue(4, $model->estado);
+            $stmt->bindValue(5, $model->rua);
+            $stmt->bindValue(6, $model->cidade);
+            $stmt->bindValue(7, $model->numero);
+            $stmt->bindValue(8, $model->PlanoSaude);
+            $stmt->bindValue(9, $model->senha);
+            $stmt->bindValue(10, $model->idPaciente);
+
+            $stmt->execute();
+        }
+
         public function selectUser($cpf)
         {
             include_once 'App/Model/PessoaModel.php';
@@ -116,17 +141,6 @@
         
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_CLASS, 'PessoaModel'); // Use FETCH_CLASS para retornar objetos do tipo PessoaModel
-        }
-
-        public function delete(int $idPaciente)
-        {
-            $sql = "DELETE  FROM paciente where idPaciente = ?";
-
-            $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue(1, $idPaciente);
-
-            $stmt->execute();
-
         }
 
 

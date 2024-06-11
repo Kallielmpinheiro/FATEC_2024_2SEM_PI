@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="App/View/modules/css/dadosp.css">
+    <style>
+        
+
+    </style>
 
 </head>
 <body>
@@ -21,6 +25,8 @@
                             <th>Número</th>
                             <th>Tipo</th>
                             <th>Plano</th>
+                            <th>Senha</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +42,8 @@
                                 <td><?= $item->numero ?></td>
                                 <td><?= $item->tipoPessoa ?></td>
                                 <td><?= $item->PlanoSaude ?></td>
+                                <td><?= $item->senha ?></td>
+
                         <?php endforeach ?>
                         </tr>
                         <table>
@@ -44,5 +52,6 @@
           
         </tr>
     </table>
+    <a href="/telaF" class="btn btn-primary" >Voltar</a>
 </body>
 </html>

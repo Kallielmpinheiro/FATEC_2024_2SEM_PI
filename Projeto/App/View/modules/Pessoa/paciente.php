@@ -26,6 +26,11 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     <header>
         <div class="logo">
             <h2 class="logo-nombre">Dashboard Paciente</h2>
+            <nav class="container d-flex justify-content-between align-items-center py-2">
+            <ul class="nav">
+                <li class="nav-item"><a href="/AtualizarDadosCadastrais" class="nav-link text-light" onclick="showSection('form-container')">Atualizar Dados</a></li>
+            </ul>
+        </nav>
         </div>
     </header>
 
@@ -143,19 +148,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <table id="symptomsTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Sintoma / Efeito Colateral</th>
-                                    <th>Gravidade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Aqui serão adicionados dinamicamente os sintomas -->
-                            </tbody>
-                        </table>
-                    </div>
+                  
                 </div>
             </div>
 

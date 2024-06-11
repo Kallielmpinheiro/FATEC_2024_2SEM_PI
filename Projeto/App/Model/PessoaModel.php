@@ -52,22 +52,20 @@
                
              
              
-            } else
+            } elseif(!empty($this->idPaciente) && $_SESSION["tipo_usuario"] == 'Pessoa')
             {
-                $dao->update($this);
+                $dao->updateUserPaciente($this);
                
         
+            }
+            else
+            {
+                $dao->update($this);
             }
 
         }
 
-        public function delete(int $idPaciente)
-        {
-            include 'App/DAO/PessoaDAO.php';
 
-            $dao = new PessoaDAO();
-            $dao->delete($idPaciente);
-        }
 
 
         public function getAllRows($medico_id)
@@ -88,17 +86,34 @@
         
             $this->rows = $dao->selectUser($cpf);
         }
+
+        public function getById(int $idPaciente)
+        {
+            include_once 'App/DAO/PessoaDAO.php';
+            $dao = new PessoaDAO();
+            $obj = $dao->selectById($idPaciente);
         
+            if ($obj) {
+                $this->idPaciente = $obj->idPaciente;
+                $this->nome = $obj->nome;
+                $this->sobrenome = $obj->sobrenome;
+                $this->cpf = $obj->cpf;
+                $this->cep = $obj->cep;
+                $this->estado = $obj->estado;
+                $this->cidade = $obj->cidade;
+                $this->rua = $obj->rua;
+                $this->numero = $obj->numero;
+                $this->PlanoSaude = $obj->PlanoSaude;
+                $this->tipoPessoa = $obj->tipoPessoa;
+                $this->senha = $obj->senha;
+                $this->descricao = $obj->descricao;
+                $this->medico_CRM = $obj->medico_CRM;
+                $this->medico_id = $obj->medico_id;
+                $this->rows = $obj->rows;
 
 
-       public function getById(int $idPaciente)
-       {
-        include 'App/DAO/PessoaDAO.php';
-        $dao = new PessoaDAO(); 
-        $obj =  $dao->selectById($idPaciente);
-
-        return ($obj) ? $obj : new PessoaModel;
-
+                return $this;
+            }
         }
 
 
