@@ -2,7 +2,6 @@
     include 'App/DAO/PessoaDAO.php';
     class PrescricaoDAO extends PessoaDAO
     {
-        public $sucess;
         public function __construct()
         {
             parent ::__construct();

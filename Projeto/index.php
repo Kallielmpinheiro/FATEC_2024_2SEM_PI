@@ -37,10 +37,15 @@ switch ($url) {
     break;
 
     case '/pessoa/form/save':
-
         Auth::verificarTipoUsuario('Funcionario');
 
         PessoaController::save();
+    break;
+
+    case '/paciente/AtualizarDados':
+        Auth::verificarTipoUsuario('Pessoa');
+
+        PessoaController::AtualizarPuser();
     break;
 
     // Telas
@@ -55,6 +60,12 @@ switch ($url) {
         PessoaController::HomePaciente();
     break;
 
+    case '/AtualizarDadosCadastrais':
+        Auth::verificarTipoUsuario('Pessoa');
+     
+        PessoaController::formPaciente();
+    break;
+
     case '/paciente':
 
             Auth::verificarTipoUsuario('Pessoa');
@@ -62,13 +73,9 @@ switch ($url) {
             PessoaController::saveDescription();
     break;
 
-
-    case '/medicamento/Sintomas':
-
-        Auth::verificarTipoUsuario('Medico');
- 
-        MedicamentoController::Sintomas();
-    break;
+        /*
+  
+    */
 
     case '/telaF':
 
@@ -108,25 +115,15 @@ switch ($url) {
         MedicamentoController::Consulta();
         break;
 
-    case '/medicamento/form':
 
-        Auth::verificarTipoUsuario('Medico');
-    
-        MedicamentoController::form();
-        break;
+       
 
-    case '/medicamento/form/save':
-   
-        Auth::verificarTipoUsuario('Medico');
-        MedicamentoController::save();
-        break;
+        /*
 
     // Rotas protegidas - Prescrição
-    case '/prescricao/form':
-       
-        Auth::verificarTipoUsuario('Medico');
-        PrescricaoController::form();
-        break;
+   
+
+        */
 
     case '/prescricao/form/save':
       

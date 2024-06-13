@@ -4,44 +4,6 @@ class MedicamentoController{
 
 
 
-public static function form()
-{
-    include 'App/View/modules/Medicação/CadastrarMedicacao.php';
-}
-
-
-
-public static function Sintomas()
-{
-    include_once 'App/Model/MedicamentoModel.php';
-
-  
-
-    
-    $modelM = new MedicamentoModel();
-    $modelM->getAllSintomas();
-    include 'App/view/modules/Pessoa/Sintomas.php';
-}
-
-
-
-public static function save()
-{
-    include 'App/Model/MedicamentoModel.php';
-    $model = new MedicamentoModel();
-    $model->nomeMedicamento = $_POST['nomeMedicamento'];
-    $model->fabricante = $_POST['fabricante'];
-    $model->tipo = $_POST['tipo'];
-    $model->uso = $_POST['uso'];
-
-
-    $model->save();
-
-    header("Location: /telaM");
-
-   
-}
-
 public static function formConsulta()
 {
     include 'App/View/modules/Pessoa/consultar.php';

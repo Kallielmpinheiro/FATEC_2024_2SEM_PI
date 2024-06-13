@@ -1,14 +1,10 @@
 <?php
-require_once 'App/Model/PessoaModel.php';
-$model = new PessoaModel();
-$senhaGerada = $model->gerarSenha();
 
 if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     // Redireciona para a página inicial
     header("Location: /");
     exit();
 }
-
 
 
 function consultarCEP($cep)
@@ -52,102 +48,74 @@ function consultarCEP($cep)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Cadastro</title>
+    <title>Atualização de Dados cadastrais</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/formpaciente.css">
-    <script>
-        function mostrarAlerta(valor) {
-            alert("Senha gerada: " + valor);
-        }
-    </script>
 </head>
 
 <body>
     <div class="container">
-        <form action="/pessoa/form/save" method="post"  class="p-4 border rounded shadow" enctype="multipart/form-data">
+        <form action="/paciente/AtualizarDados" method="post"  class="p-4 border rounded shadow" enctype="multipart/form-data">
             <h2 class="mb-4">Formulário de Cadastro</h2>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                 <input type="hidden" value = "<?= $model->idPaciente ?>" name = "idPaciente" />  
+                    <input type="hidden" value="<?= $modelP->idPaciente ?>" name="idPaciente" />  
 
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" name="nome" required id="nome"  value="<?= $model->nome ?>" >
+                    <input type="text" class="form-control" name="nome" required id="nome" value="<?= $modelP->nome ?>">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="sobrenome" class="form-label">Sobrenome</label>
-                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome" required  value="<?= $model->sobrenome ?>">
+                    <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome" required value="<?= $modelP->sobrenome ?>">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" name="cpf" id="cpf" value="<?= $model->cpf ?>" placeholder="CPF" required>
-                </div>
-                <div class="col-md-6 mb-3">
                     <label for="cep" class="form-label">CEP</label>
-                    <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" required  value="<?= $model->cep ?>">
+                    <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP" required value="<?= $modelP->cep ?>">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label for="estado" class="form-label">Estado</label>
-                    <input type="text" class="form-control" name="estado" id="estado" placeholder="Estado"  value="<?= $model->estado ?>" required>
+                    <input type="text" class="form-control" name="estado" id="estado" placeholder="Estado" value="<?= $modelP->estado ?>" required>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="cidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade"   value="<?= $model->cidade ?>" required>
+                    <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade" value="<?= $modelP->cidade ?>" required>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="rua" class="form-label">Rua</label>
-                    <input type="text" class="form-control" name="rua" id="rua" placeholder="rua"  value="<?= $model->rua ?>" required>
+                    <input type="text" class="form-control" name="rua" id="rua" placeholder="rua" value="<?= $modelP->rua ?>" required>
                 </div>
-                <div>
-                <!-- Adicionando campo oculto para a senha gerada -->
-                <input type="hidden" name="senhaGerada" value="<?= $senhaGerada ?>">
-            </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="numero" class="form-label">Número</label>
-                    <input type="text" class="form-control" name="numero" id="numero" placeholder="Número" required  value="<?= $model->numero ?>">
+                    <input type="text" class="form-control" name="numero" id="numero" placeholder="Número" required value="<?= $modelP->numero ?>">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="plano" class="form-label">Plano de Saúde</label>
                     <select class="form-select" name="planoSaude" id="planoSaude" required>
                         <option value="" selected disabled>Selecione o Plano de Saúde</option>
-                        <option value="sulamerica">SulAmérica Saúde</option>
-                        <option value="amil">Amil</option>
-                        <option value="bradesco">Bradesco Saúde</option>
-                        <option value="unimed">Unimed</option>
-                        <option value="goldencross">Golden Cross</option>
+                        <option value="sulamerica" <?= $modelP->PlanoSaude == 'sulamerica' ? 'selected' : '' ?>>SulAmérica Saúde</option>
+                        <option value="amil" <?= $modelP->PlanoSaude == 'amil' ? 'selected' : '' ?>>Amil</option>
+                        <option value="bradesco" <?= $modelP->PlanoSaude == 'bradesco' ? 'selected' : '' ?>>Bradesco Saúde</option>
+                        <option value="unimed" <?= $modelP->PlanoSaude == 'unimed' ? 'selected' : '' ?>>Unimed</option>
+                        <option value="goldencross" <?= $modelP->PlanoSaude == 'goldencross' ? 'selected' : '' ?>>Golden Cross</option>
                     </select>
                 </div>
+                <div class="row">
+        
             </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="tipoPessoa" class="form-label">Tipo de Pessoa</label>
-                    <select class="form-select" name="tipoPessoa" id="tipoPessoa" required>
-                        <option value="" selected disabled>Selecione a Situação</option>
-                        <option value="dependente">Dependente</option>
-                        <option value="pessoa">Pessoa</option>
-                    </select>
-                </div>
-
-
-                <div class="form-group col-md-4">
-                        <label for="rua">CRM</label>
-                        <input type="number" class="form-control" name="CRM" id="CRM" placeholder="CRM" required>
-                    </div>
-                <?php 
-               
-                ?>
-                
+            <div class="form-group col-md-4">
+                <label for="senha">Nova Senha</label>
+                <input type="text" class="form-control" name="senha" id="senha" placeholder="senha" required >
             </div>
             <div class="btn-container">
-                <button type="submit" class="btn btn-primary" onclick="mostrarAlerta('<?php echo $senhaGerada; ?>')">Cadastrar</button>
-                <a href="/telaF" class="btn btn-secondary" >Voltar</a>
+                <button type="submit" class="btn btn-primary">Atualizar</button>
+                <a href="/telaP" class="btn btn-secondary">Voltar</a>
             </div>
-       
         </form>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script>
@@ -170,6 +138,7 @@ function consultarCEP($cep)
                 xhr.send();
             });
         </script>
+    </div>
 </body>
 
 </html>

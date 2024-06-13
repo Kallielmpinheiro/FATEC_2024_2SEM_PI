@@ -26,6 +26,10 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     <header>
         <div class="logo">
             <h2 class="logo-nombre">Dashboard Paciente</h2>
+            <nav class="container d-flex justify-content-between align-items-center py-2">
+            <ul class="nav">
+                <li class="nav-item"><a href="/AtualizarDadosCadastrais" class="nav-link text-light" onclick="showSection('form-container')">Atualizar Dados</a></li>
+            </ul>
         </div>
     </header>
 
@@ -33,16 +37,13 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
         <!-- Abas ou seções do dashboard -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="medicamento-tab" data-toggle="tab" href="#medicamento" role="tab" aria-controls="medicamento" aria-selected="true">Medicamento</a>
+                <a class="nav-link active" id="medicamento-tab" data-toggle="tab" href="#medicamento" role="tab" aria-controls="medicamento" aria-selected="true">Relatório Completo</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="alarme-tab" data-toggle="tab" href="#alarme" role="tab" aria-controls="alarme" aria-selected="false">Alarme</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="sintomas-tab" data-toggle="tab" href="#sintomas" role="tab" aria-controls="sintomas" aria-selected="false">Sintomas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="relatorio-tab" data-toggle="tab" href="#relatorio" role="tab" aria-controls="relatorio" aria-selected="false">Relatório Completo</a>
             </li>
             <li>
                 <a class="btn" id="logout-tab" href="/logout">Logout</a>
@@ -61,13 +62,11 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                                 <div class="row">
                                     <div class="col-sm-8"><h2><b></b></h2></div>
                                     <div class="col-sm-4">
-                                        <div class="search-box">
-                                            <i class="material-icons">&#xE8B6;</i>
-                                            <input type="text" class="form-control" placeholder="Buscar&hellip;">
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
+                            
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                     <tr>
@@ -143,58 +142,12 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <table id="symptomsTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Sintoma / Efeito Colateral</th>
-                                    <th>Gravidade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Aqui serão adicionados dinamicamente os sintomas -->
-                            </tbody>
-                        </table>
-                    </div>
+                  
                 </div>
             </div>
 
             <!-- Conteúdo da aba de Relatório Completo -->
-            <div class="tab-pane fade" id="relatorio" role="tabpanel" aria-labelledby="relatorio-tab">
-                <div class="container">
-                    <header>
-                        <h1>Relatório Médico</h1>
-                    </header>
-                    <section class="medications">
-                        <h2>Receitas Médicas</h2>
-                        <ul>
-                            <li>
-                                <h3>Medicamento 1</h3>
-                                <p>Dosagem: <span>XX mg</span></p>
-                                <p>Frequência: <span>X vezes ao dia</span></p>
-                                <p>Duração do tratamento: <span>X dias/semanas/meses</span></p>
-                            </li>
-                            <li>
-                                <h3>Medicamento 2</h3>
-                                <p>Dosagem: <span>XX mg</span></p>
-                                <p>Frequência: <span>X vezes ao dia</span></p>
-                                <p>Duração do tratamento: <span>X dias/semanas/meses</span></p>
-                            </li>
-                            <!-- Adicione mais medicamentos conforme necessário -->
-                        </ul>
-                    </section>
-                    <section class="instructions">
-                        <h2>Instruções</h2>
-                        <p>Tome os medicamentos conforme indicado.</p>
-                        <p>Se houver qualquer reação adversa, entre em contato com seu médico imediatamente.</p>
-                        <p>Siga todas as instruções cuidadosamente para garantir a eficácia do tratamento.</p>
-                    </section>
-                    <section class="contact">
-                        <h2>Contato do Médico</h2>
-                        <p>Nome: <span>Nome do médico</span></p>
-                        <p>Telefone: <span>Número de contato</span></p>
-                    </section>
-                </div>
+           
             </div>
         </div>
     </div>

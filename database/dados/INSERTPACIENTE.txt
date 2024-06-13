@@ -1,0 +1,14 @@
+-- Inserção de dados na tabela medico
+INSERT INTO `medico` (`NumCRM`, `nome`, `data_nascimento`, `cpf`, `especialidade`, `telefone`, `senha`) VALUES
+(123456, 'Dr. João Silva', '1975-05-10', '123.456.789-00', 'Cardiologista', '(19) 99999-0000', 'senha123'),
+(234567, 'Dra. Maria Oliveira', '1980-08-15', '234.567.890-11', 'Dermatologista', '(19) 98888-1111', 'senha456'),
+(345678, 'Dr. Pedro Santos', '1985-12-20', '345.678.901-22', 'Neurologista', '(19) 97777-2222', 'senha789');
+
+-- Inserção de dados na tabela paciente
+INSERT INTO `paciente` (`nome`, `sobrenome`, `cpf`, `cep`, `estado`, `rua`, `cidade`, `numero`, `PlanoSaude`, `tipoPessoa`, `senha`, `medico_id`) VALUES
+('Ana', 'Pereira', '456.789.012-33', '13600-000', 'SP', 'Rua A', 'Araras', '123', 'Amil', 'Física', 'senha111', 1),
+('Carlos', 'Souza', '567.890.123-44', '13600-001', 'SP', 'Rua B', 'Araras', '456', 'Bradesco', 'Física', 'senha222', 2),
+('Beatriz', 'Mendes', '678.901.234-55', '13600-002', 'SP', 'Rua C', 'Araras', '789', 'Unimed', 'Física', 'senha333', 3),
+('Roberto', 'Fernandes', '789.012.345-66', '13600-003', 'SP', 'Rua D', 'Araras', '321', 'Amil', 'Física', 'senha444', 1),
+('Juliana', 'Costa', '890.123.456-77', '13600-004', 'SP', 'Rua E', 'Araras', '654', 'SulAmerica', 'Física', 'senha555', 2),
+('Fernando', 'Gomes', '901.234.567-88', '13600-005', 'SP', 'Rua F', 'Araras', '987', 'NotreDame', 'Física', 'senha666', 3);

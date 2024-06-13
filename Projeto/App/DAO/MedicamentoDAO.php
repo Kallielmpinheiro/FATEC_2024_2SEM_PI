@@ -8,19 +8,6 @@ class MedicamentoDAO extends PessoaDAO
 
     }
 
-    public function InsertMedication(MedicamentoModel $model)
-    {   
-        $sql = "INSERT INTO medicamentosconsulta (nomeMedicamento, fabricante, tipo, uso) VALUES(?, ?, ?, ?)"; 
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $model->nomeMedicamento);
-        $stmt->bindValue(2, $model->fabricante);
-        $stmt->bindValue(3, $model->tipo);
-        $stmt->bindValue(4, $model->uso);
-
-
-        $stmt->execute();
-    }
 
     public function selectM()
     {
@@ -52,24 +39,6 @@ class MedicamentoDAO extends PessoaDAO
 
 
 
-
-
-    public function selectSintomas($parametro)
-    {
-        $sql = "
-        SELECT s.id_paciente, p.nome, s.descricao, s.data_descricao
-        FROM paciente p
-        JOIN efeitoscolaterais s ON p.idPaciente = s.id_paciente
-        WHERE p.cpf = ?;
-        ";
-
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $parametro, PDO::PARAM_STR);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
-
-    }
     public function Consultar_Paciente($parametro)
     {   
         try {

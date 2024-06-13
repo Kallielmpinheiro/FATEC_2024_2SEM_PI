@@ -8,13 +8,6 @@ class MedicamentoModel
     public $rows;
     public $nomeMedicamento, $fabricante, $tipo, $uso;
     
-    public function save()
-    {
-        include 'App/DAO/MedicamentoDAO.php';
-        $dao = new MedicamentoDao();
-        $dao->InsertMedication($this);
-
-    }
     public function consulta()
     {
         include 'App/DAO/MedicamentoDAO.php';
@@ -57,16 +50,7 @@ class MedicamentoModel
 
        }
 
-
-       public function getAllSintomas()
-       {
-        include_once 'App/DAO/MedicamentoDAO.php';
-        $dao = new MedicamentoDAO();
-      
-        return $dao->selectSintomas($parametro);
-   
-
-       }
+       
 }
 
 ?>
