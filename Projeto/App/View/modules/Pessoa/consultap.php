@@ -84,6 +84,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                 <th>CRM</th>
                 <th>Data</th>
                 <th>Dosagem</th>
+                <th>Instrução</th>
             </tr>
             
             <?php
@@ -126,26 +127,26 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
           
                         if ($linha->tipo != $ultimo_tipo) {
                             echo "<td>{$linha->tipo}</td>";
-                            $ultimo_tipo = $linha->tipo; // Atualiza o último medicamento exibido
+                            $ultimo_tipo = $linha->tipo; 
                         } else {
                             echo '<td></td>';
                         } 
+                        
 
                         if ($linha->NumCRM != $ultimo_NumCRM) {
                             echo "<td>{$linha->NumCRM}</td>";
-                            $ultimo_NumCRM = $linha->NumCRM; // Atualiza o último medicamento exibido
+                            $ultimo_NumCRM = $linha->NumCRM;
                         } else {
                             echo '<td></td>';
                         } 
+                            
 
 
                         
-                    
-                
-                        // Exibe o NumCRM se for diferente do último NumCRM exibido
             
                         echo "<td>{$linha->data_prescricao}</td>";
                         echo "<td>{$linha->dosagem}</td>";
+                        echo "<td>{$linha->instrucao}</td>";
             
                         echo '</tr>';
                     }

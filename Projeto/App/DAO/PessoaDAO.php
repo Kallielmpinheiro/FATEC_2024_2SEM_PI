@@ -50,6 +50,7 @@
             $stmt->bindValue(12, $medico_id);
 
             $stmt->execute();
+
                     
         }
 
@@ -117,6 +118,7 @@
             $stmt->bindValue(10, $model->idPaciente);
 
             $stmt->execute();
+           
         }
 
         public function selectUser($cpf)

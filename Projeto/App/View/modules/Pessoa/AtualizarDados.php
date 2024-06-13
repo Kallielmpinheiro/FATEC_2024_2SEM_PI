@@ -109,8 +109,8 @@ function consultarCEP($cep)
         
             </div>
             <div class="form-group col-md-4">
-                <label for="senha">Senha</label>
-                <input type="text" class="form-control" name="senha" id="senha" placeholder="senha" required value="<?= $modelP->senha ?>">
+                <label for="senha">Nova Senha</label>
+                <input type="text" class="form-control" name="senha" id="senha" placeholder="senha" required >
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-primary">Atualizar</button>

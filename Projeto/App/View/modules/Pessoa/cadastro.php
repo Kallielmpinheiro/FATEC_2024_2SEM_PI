@@ -1,4 +1,7 @@
 <?php
+require_once 'App/Model/PessoaModel.php';
+$model = new PessoaModel();
+$senhaGerada = $model->gerarSenha();
 
 if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     // Redireciona para a página inicial
@@ -52,6 +55,11 @@ function consultarCEP($cep)
     <title>Formulário de Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/formpaciente.css">
+    <script>
+        function mostrarAlerta(valor) {
+            alert("Senha gerada: " + valor);
+        }
+    </script>
 </head>
 
 <body>
@@ -93,6 +101,10 @@ function consultarCEP($cep)
                     <label for="rua" class="form-label">Rua</label>
                     <input type="text" class="form-control" name="rua" id="rua" placeholder="rua"  value="<?= $model->rua ?>" required>
                 </div>
+                <div>
+                <!-- Adicionando campo oculto para a senha gerada -->
+                <input type="hidden" name="senhaGerada" value="<?= $senhaGerada ?>">
+            </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -132,7 +144,7 @@ function consultarCEP($cep)
                 
             </div>
             <div class="btn-container">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <button type="submit" class="btn btn-primary" onclick="mostrarAlerta('<?php echo $senhaGerada; ?>')">Cadastrar</button>
                 <a href="/telaF" class="btn btn-secondary" >Voltar</a>
             </div>
        

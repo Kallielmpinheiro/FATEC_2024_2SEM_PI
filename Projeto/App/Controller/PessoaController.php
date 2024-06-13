@@ -123,6 +123,8 @@
             $model->tipoPessoa = $_POST['tipoPessoa'];
             $model->PlanoSaude = $_POST['planoSaude'];
             $model->medico_CRM = $_POST['CRM'];
+            $model->senhaGerada = $_POST['senhaGerada'];
+            
          
           
             
@@ -159,7 +161,9 @@
             $model->rua = $_POST['rua'];
             $model->numero = $_POST['numero'];
             $model->PlanoSaude = $_POST['planoSaude'];
-            $model->senha = $_POST['senha'];
+            $model->senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
+
          
           
 
