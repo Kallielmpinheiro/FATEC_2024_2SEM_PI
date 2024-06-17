@@ -19,15 +19,15 @@ class LoginDAO extends PessoaDAO
 
         // Define a consulta SQL com base no tipo de usuário
         if ($tipo == 'Pessoa') {
-            $sql = "SELECT p.idPaciente as id, p.nome, p.cpf, p.senha FROM paciente p WHERE p.cpf = ?";
+            $sql = "SELECT p.idPaciente as id, p.nome, p.cpf, p.senha FROM paciente p WHERE p.cpf = ? and status = ?";
             $_SESSION["tipo_usuario"] = 'Pessoa';
             $redirect = "/telaP";
         } elseif ($tipo == 'Medico') {
-            $sql = "SELECT m.id as id, m.nome, m.cpf, m.senha FROM medico m WHERE m.cpf = ?";
+            $sql = "SELECT m.id as id, m.nome, m.cpf, m.senha FROM medico m WHERE m.cpf = ? and status = ?";
             $_SESSION["tipo_usuario"] = 'Medico';
             $redirect = "/telaM";
         } elseif ($tipo == 'Funcionario') {
-            $sql = "SELECT f.idFuncionario, f.nome, f.cpf, f.senha FROM funcionarios f WHERE f.cpf = ?";
+            $sql = "SELECT f.idFuncionario, f.nome, f.cpf, f.senha FROM funcionarios f WHERE f.cpf = ? and status = ?";
             $_SESSION["tipo_usuario"] = 'Funcionario';
             $redirect = "/telaF";
         }
@@ -35,6 +35,7 @@ class LoginDAO extends PessoaDAO
         // Prepara a consulta SQL
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->cpf);
+        $stmt->bindValue(2, "ativo");
         $stmt->execute();
         $this->result = $stmt->fetch(PDO::FETCH_ASSOC);
 

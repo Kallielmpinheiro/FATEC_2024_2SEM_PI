@@ -5,9 +5,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     exit();
 }
 
-require_once 'App/Service/Auth.php';
-Auth::validador();
-$nomeUsuario = isset($_SESSION["user_nome"]) ? $_SESSION["user_nome"] : "Usuário";
+
 
 // Função para retornar as sugestões de medicamentos
 function getMedicamentoSuggestions($input)
@@ -101,7 +99,7 @@ if (isset($_GET['medicamento'])) {
     <header class="custom-header">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="logo">
-                <h3>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?>!</h3>
+                <h3>Bem-vindo, <?= $_SESSION["user_nome"] ?>!</h3>
             </div>
             <div class="nav">
                 <a href="/logout" class="btn btn-link text-white">Logout</a>

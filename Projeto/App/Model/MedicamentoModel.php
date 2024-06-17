@@ -6,7 +6,7 @@ class MedicamentoModel
     public $sintomas;
     public $parametro;
     public $rows;
-    public $nomeMedicamento, $fabricante, $tipo, $uso;
+
     
     public function consulta()
     {

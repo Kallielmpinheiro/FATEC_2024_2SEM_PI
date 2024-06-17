@@ -1,12 +1,14 @@
 <?php
 require_once 'App/Model/PessoaModel.php';
-$model = new PessoaModel();
-$senhaGerada = $model->gerarSenha();
+$modell = new PessoaModel();
+$senhaGerada = $modell->gerarSenha();
 
 if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     // Redireciona para a página inicial
     header("Location: /");
     exit();
+
+
 }
 
 
@@ -132,11 +134,18 @@ function consultarCEP($cep)
                         <option value="pessoa">Pessoa</option>
                     </select>
                 </div>
+                <div class="col-md-6 mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" name="status" id="status" required>
+                        <option value="ativo" selected>Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                </div>
 
 
                 <div class="form-group col-md-4">
                         <label for="rua">CRM</label>
-                        <input type="number" class="form-control" name="CRM" id="CRM" placeholder="CRM" required>
+                        <input type="number" class="form-control" name="CRM" id="CRM" placeholder="CRM" required >
                     </div>
                 <?php 
                
