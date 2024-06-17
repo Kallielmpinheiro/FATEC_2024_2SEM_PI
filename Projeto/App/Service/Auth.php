@@ -10,6 +10,7 @@ class Auth
         if (!empty($result)) {
             $_SESSION["logged_in"] = true;
             $_SESSION["user_id"] = $result['id'];
+            $_SESSION["user_nome"] = $result['nome'];
             $_SESSION["user_data"] = $result;
             $_SESSION["tipo_usuario"] = $tipo;
             return true;
