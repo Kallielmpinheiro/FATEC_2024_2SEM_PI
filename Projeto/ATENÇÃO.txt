@@ -1,0 +1,16 @@
+JOgar todos os arquivos e pastas de Fate_2024_2SEM_PI dentro de htdocs(jogo suas pastas que não tem relação com o PI dentro de uma única pasta para melhor visualização)
+
+
+
+tanto o arquivo index.php, quanto o httacess devem estar no diretório raiz htdocs para rodar de maneira adequada o encaminhamento de rotas.
+
+
+
+CASO você deseje caminhar pelas pastas manualmente, aconselho recortar estes dois arquivos e colocar numa pasta fora de httdocs :D
+
+
+
+Ainda não terminei de implementar as telas, mas já introduzi o gerar senha dentro da classe e ainda não implementei a questão da foto por dúvidas :D 
+
+
+amanhã eu continarei no foco pra terminar.

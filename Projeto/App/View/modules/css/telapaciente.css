@@ -1,0 +1,68 @@
+/* Estilos para o cabeçalho */
+.custom-header {
+    background-color: #2e6476; /* Cor de fundo azul */
+    color: #ffffff; /* Cor do texto branca */
+    padding: 15px 20px; /* Espaçamento interno */
+    border-bottom: 1px solid #1f4f5c; /* Linha inferior */
+    display: flex;
+    justify-content: space-between; /* Alinha os itens nas extremidades */
+    align-items: center; /* Alinha verticalmente ao centro */
+}
+
+.custom-header h3 {
+    margin: 0; /* Remove todas as margens do título */
+    font-weight: 700; /* Fonte mais negrito */
+    font-size: 1.8rem; /* Tamanho da fonte maior */
+    text-transform: uppercase; /* Transforma texto em maiúsculas */
+}
+
+.custom-header .logo {
+    margin-right: auto; /* Margem à direita, empurra para a esquerda */
+}
+
+.custom-header .nav {
+    text-align: right; /* Alinha os links à direita */
+}
+
+.custom-header .nav a {
+    color: #ffffff; /* Cor do texto dos links */
+    text-decoration: none; /* Remove sublinhado padrão */
+    padding: 0.5rem 1rem; /* Espaçamento interno */
+    transition: color 0.3s; /* Transição suave da cor */
+}
+
+.custom-header .nav a:hover {
+    color: #c7d9e2; /* Cor ao passar o mouse */
+}
+
+/* Estilos para as abas */
+.nav-tabs {
+    background-color: #f8f9fa; /* Cor de fundo das abas */
+    border-bottom: 1px solid #dee2e6; /* Linha inferior */
+    margin-top: 20px; /* Espaçamento superior */
+    display: flex; /* Layout flexível */
+    justify-content: flex-start; /* Justifica à esquerda */
+    padding-left: 20px; /* Espaçamento interno à esquerda */
+}
+
+.nav-link {
+    color: #495057; /* Cor do texto padrão das abas */
+    font-weight: bold; /* Texto em negrito */
+    padding: 0.5rem 1rem; /* Espaçamento interno */
+    border: none; /* Remove borda */
+    border-radius: 0; /* Remove borda arredondada */
+    transition: background-color 0.3s, color 0.3s; /* Transições suaves */
+}
+
+.nav-link.active {
+    background-color: #2e6476; /* Cor de fundo ativa */
+    color: #ffffff; /* Cor do texto ativo */
+}
+
+.nav-link:hover {
+    color: #c7d9e2; /* Cor do texto ao passar o mouse */
+}
+
+.nav-link:not(.active):hover {
+    color: #495057; /* Cor do texto ao passar o mouse para abas não ativas */
+}
