@@ -222,7 +222,7 @@
                     <p>Controle de Qualidade</p>
                     <p>Cuidados Médicos Completos</p>
                     <!-- Logotipo -->
-                    <img src="../img/log2.png" alt="Logo Cuidados Médicos Completos" style="margin-top: 10px;">
+                    <img src="App/View/modules/img/log2.png" alt="Logo Cuidados Médicos Completos" style="margin-top: 10px;">
                 </div>
             </div>
         </div>

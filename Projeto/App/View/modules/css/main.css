@@ -4,10 +4,22 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que a página ocupe pelo menos a altura da tela */
 }
 
 header.bg-dark {
-    background-color: #343a40;
+    background-color: #2e6476; /* Cor de fundo azul */
+    flex-shrink: 0; /* Evita que o header encolha */
+}
+
+footer.bg-dark {
+    background-color: #2e6476; /* Cor de fundo azul */
+    color: #fff; /* Cor do texto branco */
+    padding: 20px 0;
+    margin-top: auto; /* Empurra o footer para a parte inferior da página */
+    flex-shrink: 0; /* Evita que o footer encolha */
 }
 
 header a.navbar-brand img {
@@ -16,24 +28,18 @@ header a.navbar-brand img {
 
 .nav-link {
     font-size: 16px;
-    text-decoration: none; /* Remove a decoração */
-    color: inherit; /* Usa a cor padrão do texto */
+    text-decoration: none;
+    color: inherit;
 }
-
 
 .nav-link:hover {
-    color: inherit; /* Mantém a cor do texto ao passar o mouse */
-}
-
-
-.main {
-    padding: 20px;
-    text-align: center; /* Centraliza os elementos filhos */
+    color: inherit;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px; /* Adiciona padding aos lados */
 }
 
 .box1 {
@@ -70,22 +76,6 @@ header a.navbar-brand img {
     line-height: 1.4;
 }
 
-footer.footer {
-    background-color: #343a40;
-    color: #fff;
-    padding: 40px 0;
-}
-
-footer h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-footer p {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
 .history-container {
     background: #fff;
     border-radius: 8px;
@@ -96,10 +86,6 @@ footer p {
 
 .form-container {
     display: none;
-}
-
-.active {
-    display: block;
 }
 
 .form-control {
@@ -127,27 +113,70 @@ footer p {
         margin-bottom: 10px;
     }
 }
+
 .link-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Adicione margem na parte superior da div contendo os links */
-    margin-bottom: 20px; /* Adicione margem na parte inferior da div contendo os links */
-
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .link-container .box1 {
-    margin: 0 10px; /* Adicione margens entre os links para espaçamento */
-}
-.history-container {
-    margin-bottom: 20px; /* Adicione margem na parte inferior da seção de busca do paciente */
+    margin: 0 10px;
 }
 
 .box1 a {
-    text-decoration: none; /* Remove a decoração */
-    color: inherit; /* Usa a cor padrão do texto */
+    text-decoration: none;
+    color: inherit;
 }
 
 .box1 a:hover {
-    color: inherit; /* Mantém a cor do texto ao passar o mouse */
+    color: inherit;
 }
 
+/* Estilos personalizados */
+
+.bg-custom {
+    background-color: #2e6476 !important; /* Cor de fundo azul para navbar e footer */
+}
+
+.welcome-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa; /* Cor de fundo para destacar o contêiner */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-container h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333; /* Cor do texto */
+}
+
+.history-container {
+    margin-top: 20px;
+}
+
+.form-control {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    /* Estilos para telas menores */
+    .welcome-container {
+        padding: 10px;
+    }
+
+    .form-control {
+        max-width: 100%;
+    }
+}

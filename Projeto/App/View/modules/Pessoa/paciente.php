@@ -4,36 +4,40 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     header("Location: /");
     exit();
 }
+
+require_once 'App/Service/Auth.php';
+Auth::validador();
+$nomeUsuario = isset($_SESSION["user_nome"]) ? $_SESSION["user_nome"] : "Usuário";
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/log1.png" type="image/x-icons">
-    <title>Dashboard Paciente</title>
+    <link rel="icon" href="App/View/modules/img/log1.png" type="image/x-icons">
+    <title>Pacientes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="App/View/modules/css/telapaciente.css">
-    <!-- Inclua outros estilos CSS aqui -->
-    <style>
-        /* Adicione estilos personalizados aqui */
-    </style>
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <h2 class="logo-nombre">Dashboard Paciente</h2>
-            <nav class="container d-flex justify-content-between align-items-center py-2">
-            <ul class="nav">
-                <li class="nav-item"><a href="/AtualizarDadosCadastrais" class="nav-link text-light" onclick="showSection('form-container')">Atualizar Dados</a></li>
-            </ul>
-        </div>
-    </header>
 
-    <div class="container">
+<body>
+
+<header class="custom-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="logo">
+            <h3>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?>!</h3>
+        </div>
+        <div class="nav">
+            <a href="/AtualizarDadosCadastrais" class="btn btn-link text-white">Atualizar Dados</a>
+            <a href="/logout" class="btn btn-link text-white">Logout</a>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container mt-4">
         <!-- Abas ou seções do dashboard -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
@@ -44,9 +48,6 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="sintomas-tab" data-toggle="tab" href="#sintomas" role="tab" aria-controls="sintomas" aria-selected="false">Sintomas</a>
-            </li>
-            <li>
-                <a class="btn" id="logout-tab" href="/logout">Logout</a>
             </li>
         </ul>
 
@@ -60,13 +61,13 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                         <div class="table-wrapper">
                             <div class="table-title">
                                 <div class="row">
-                                    <div class="col-sm-8"><h2><b></b></h2></div>
-                                    <div class="col-sm-4">
-                                        
+                                    <div class="col-sm-8">
+                                        <h2><b></b></h2>
                                     </div>
+                                    <div class="col-sm-4"></div>
                                 </div>
                             </div>
-                            
+
                             <table class="table table-striped table-hover table-bordered">
                                 <thead>
                                     <tr>
@@ -75,31 +76,31 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                                         <th>uso</th>
                                         <th>dosagem <i class="fa fa-sort"></i></th>
                                         <th>Esquema de tratamento</th>
-                                        <th>data_prescrição</th>
+                                        <th>Data da Prescrição</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                    if(isset($model) && $model !== null && property_exists($model, 'rows') && is_array($model->rows)) {
-                        foreach($model->rows as $item): ?>
-                            <tr>
-                                <td><?= $item->nomeMedicamento ?></td>
-                                <td><?= $item->tipo?></td>
-                                <td><?= $item->uso ?></td>
-                                <td><?= $item->dosagem ?></td>
-                                <td><?= $item->instrucao?></td>
-                                <td><?= $item->data_prescricao?></td>
-                            </tr>
-                        <?php endforeach;
-                        } else {
-                            echo 'Nenhum medicamento cadastrado';
-                        }
-                        ?>
+                                    <?php
+                                    if (isset($model) && $model !== null && property_exists($model, 'rows') && is_array($model->rows)) {
+                                        foreach ($model->rows as $item) : ?>
+                                            <tr>
+                                                <td><?= $item->nomeMedicamento ?></td>
+                                                <td><?= $item->tipo ?></td>
+                                                <td><?= $item->uso ?></td>
+                                                <td><?= $item->dosagem ?></td>
+                                                <td><?= $item->instrucao ?></td>
+                                                <td><?= $item->data_prescricao ?></td>
+                                            </tr>
+                                    <?php endforeach;
+                                    } else {
+                                        echo 'Nenhum medicamento cadastrado';
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
-                    </div>  
-                </div>  
+                    </div>
+                </div>
             </div>
 
             <!-- Conteúdo da aba de Alarme -->
@@ -141,13 +142,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                             </form>
                         </div>
                     </div>
-
-                  
                 </div>
-            </div>
-
-            <!-- Conteúdo da aba de Relatório Completo -->
-           
             </div>
         </div>
     </div>
@@ -166,4 +161,5 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
         });
     </script>
 </body>
+
 </html>

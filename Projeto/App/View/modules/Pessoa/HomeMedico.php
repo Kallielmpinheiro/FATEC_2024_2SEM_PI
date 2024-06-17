@@ -1,37 +1,29 @@
 <?php
 // Verifica se a URL acessada contém o nome do arquivo PHP atual
 if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
-    // Redireciona para a página inicial
     header("Location: /");
     exit();
 }
 
+require_once 'App/Service/Auth.php';
+Auth::validador();
+$nomeUsuario = isset($_SESSION["user_nome"]) ? $_SESSION["user_nome"] : "Usuário";
+
 // Função para retornar as sugestões de medicamentos
 function getMedicamentoSuggestions($input)
 {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "bdclinicapi";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $sql = $conn->prepare("SELECT nomeMedicamento FROM medicamentosConsulta WHERE nomeMedicamento LIKE ?");
+    $pessoaDAO = new PessoaDAO();
+    $conexao = $pessoaDAO->getConexao();
+    $sql = $conexao->prepare("SELECT nomeMedicamento FROM medicamentosConsulta WHERE nomeMedicamento LIKE ?");
     $likeInput = "%" . $input . "%";
-    $sql->bind_param("s", $likeInput);
+    $sql->bindParam(1, $likeInput, PDO::PARAM_STR);
     $sql->execute();
-    $result = $sql->get_result();
 
     $suggestions = [];
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
         $suggestions[] = $row['nomeMedicamento'];
     }
 
-    $conn->close();
     return $suggestions;
 }
 
@@ -58,8 +50,23 @@ if (isset($_GET['medicamento'])) {
 
         .highlight {
             background-color: #FFFF00;
-            /* Cor de destaque */
             font-weight: bold;
+        }
+
+        .custom-header {
+            background-color: #2e6476;
+            /* Cor de fundo azul */
+            color: #ffffff;
+            /* Cor do texto branca */
+            padding: 15px 20px;
+            /* Espaçamento interno */
+            border-bottom: 1px solid #1f4f5c;
+            /* Linha inferior */
+            display: flex;
+            justify-content: space-between;
+            /* Alinha os itens nas extremidades */
+            align-items: center;
+            /* Alinha verticalmente ao centro */
         }
 
         #suggestions {
@@ -90,11 +97,18 @@ if (isset($_GET['medicamento'])) {
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <h2 class="logo-nombre"></h2>
+
+    <header class="custom-header">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h3>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?>!</h3>
+            </div>
+            <div class="nav">
+                <a href="/logout" class="btn btn-link text-white">Logout</a>
+            </div>
         </div>
     </header>
+
     <div class="container">
         <!-- Abas ou seções do dashboard -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -109,9 +123,6 @@ if (isset($_GET['medicamento'])) {
             </li>
             <li class="nav-item">
                 <a href="/medicamento/formConsulta" class="nav-link" id="receita-tab" aria-controls="receita" aria-selected="false">Consultar Prescrição</a>
-            </li>
-            <li class="nav-item">
-                <a href="/logout" class="nav-link" id="receita-tab" aria-controls="receita" aria-selected="false">Logout</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -156,13 +167,8 @@ if (isset($_GET['medicamento'])) {
                                             <td><?= $item->numero ?></td>
                                             <td><?= $item->tipoPessoa ?></td>
                                             <td><?= $item->PlanoSaude ?></td>
-                                        <?php endforeach ?>
                                         </tr>
-                                        <table>
-                                            <tr>
-                                                <th></th>
-                                            </tr>
-                                        </table>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -182,10 +188,7 @@ if (isset($_GET['medicamento'])) {
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="search-box">
-
-
                                             <input type="text" id="buscar-medicamento" class="form-control" placeholder="Buscar Medicamento..." oninput="getSuggestions(); filterTable()">
-
                                             <div id="suggestions"></div>
                                         </div>
                                     </div>
@@ -202,9 +205,8 @@ if (isset($_GET['medicamento'])) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    if (isset($modelM) && $modelM !== null && property_exists($modelM, 'rows') && is_array($modelM->rows)) {
-                                        foreach ($modelM->rows as $item) : ?>
+                                    <?php if (isset($modelM) && $modelM !== null && property_exists($modelM, 'rows') && is_array($modelM->rows)) : ?>
+                                        <?php foreach ($modelM->rows as $item) : ?>
                                             <tr>
                                                 <td><?= $item->idMedicamento ?></td>
                                                 <td><?= $item->nomeMedicamento ?></td>
@@ -212,11 +214,12 @@ if (isset($_GET['medicamento'])) {
                                                 <td><?= $item->tipo ?></td>
                                                 <td><?= $item->uso ?></td>
                                             </tr>
-                                    <?php endforeach;
-                                    } else {
-                                        echo 'Nenhum medicamento cadastrado';
-                                    }
-                                    ?>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <tr>
+                                            <td colspan="5">Nenhum medicamento cadastrado</td>
+                                        </tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -339,7 +342,7 @@ if (isset($_GET['medicamento'])) {
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0]; // Assume que o nome do medicamento está na primeira coluna
+                td = tr[i].getElementsByTagName("td")[1]; // Atualizar o índice para a coluna correta do nome do medicamento
 
                 if (td) {
                     txtValue = td.textContent || td.innerText;
@@ -352,7 +355,6 @@ if (isset($_GET['medicamento'])) {
                 }
             }
         }
-
 
         document.addEventListener('click', function(e) {
             if (!document.getElementById('suggestions').contains(e.target)) {
