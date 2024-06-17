@@ -4,6 +4,8 @@
     {
        public $idPaciente, $nome, $sobrenome, $cpf, $cep, $estado, $cidade, $rua, $numero, $PlanoSaude, $tipoPessoa, $senha;
 
+       public $status;
+
 
        public $senhaGerada;
 
@@ -72,12 +74,12 @@
 
 
 
-        public function getByCPF($cpf)
+        public function getByCRM($medico_CRM)
         {
             include 'App/DAO/PessoaDAO.php';
             $dao = new PessoaDAO();
         
-            $this->rows = $dao->selectUser($cpf);
+            $this->rows = $dao->selectUser($medico_CRM);
         }
 
         public function getById(int $idPaciente)
@@ -85,7 +87,7 @@
             include_once 'App/DAO/PessoaDAO.php';
             $dao = new PessoaDAO();
             $obj = $dao->selectById($idPaciente);
-        
+
             if ($obj) {
                 $this->idPaciente = $obj->idPaciente;
                 $this->nome = $obj->nome;
@@ -103,6 +105,8 @@
                 $this->medico_CRM = $obj->medico_CRM;
                 $this->medico_id = $obj->medico_id;
                 $this->rows = $obj->rows;
+
+            
 
 
                 return $this;

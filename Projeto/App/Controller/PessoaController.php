@@ -27,19 +27,6 @@
             include 'App/view/modules/Pessoa/paciente.php';
         }
 
-        public static function formPaciente()
-        {
-            include_once 'App/Model/PessoaModel.php';
-            $modelP = new PessoaModel();
-            $loggedInUserId = Auth::getLoggedInUserId();
-        
-        
-            $modelP->getById($loggedInUserId);
-        
-            // Debug: Verifique se os dados do modelo foram carregados
-        
-            include 'App/View/modules/Pessoa/AtualizarDados.php';
-        }
         public static function HomeMedico()
         {
             include_once 'App/Model/MedicamentoModel.php';
@@ -69,8 +56,8 @@
 
 
             $model = new PessoaModel();
-            $model->cpf = $_POST['cpf'];
-            $model->getByCPF($model->cpf);
+            $model->medico_CRM = $_POST['CRM'];
+            $model->getByCRM($model->medico_CRM);
 
 
             include 'App/view/modules/Pessoa/DadosPaciente.php';
@@ -81,22 +68,39 @@
 
 
 
-
         public static function form()
         {
             include 'App/Model/PessoaModel.php';
             $model = new PessoaModel();
           
-            if(isset($_GET['id']))
-                $model = $model->getById((int) $_GET['id']);//me ajuda a evitar ainda mais sql injection 
+            // Verifica se foi passado um ID válido na query string
+            if(isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $id = (int) $_GET['id'];
+
+             
+
+                $model = $model->getById($id);
+               
+            }
            
-            
-           
-            
-            
+            // Inclui a view de formulário (cadastro.php)
             include 'App/View/modules/Pessoa/cadastro.php';
         }
 
+        
+        public static function formPaciente()
+        {
+            include_once 'App/Model/PessoaModel.php';
+            $modelP = new PessoaModel();
+            $loggedInUserId = Auth::getLoggedInUserId();
+        
+        
+            $modelP->getById($loggedInUserId);
+        
+            // Debug: Verifique se os dados do modelo foram carregados
+        
+            include 'App/View/modules/Pessoa/AtualizarDados.php';
+        }
 
           
         public static function save()
@@ -124,6 +128,9 @@
             $model->PlanoSaude = $_POST['planoSaude'];
             $model->medico_CRM = $_POST['CRM'];
             $model->senhaGerada = $_POST['senhaGerada'];
+            $model->status = $_POST['status'];
+ 
+
             
          
           

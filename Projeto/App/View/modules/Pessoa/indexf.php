@@ -6,10 +6,6 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
     exit();
 }
 
-require_once 'App/Service/Auth.php';
-Auth::validador();
-$nomeUsuario = isset($_SESSION["user_nome"]) ? $_SESSION["user_nome"] : "Usuário";
-
 
 ?>
 
@@ -53,7 +49,7 @@ $nomeUsuario = isset($_SESSION["user_nome"]) ? $_SESSION["user_nome"] : "Usuári
 
     <main class="main">
         <section id="form-container" class="form-container active">
-            <h3>Bem-vindo, <?= htmlspecialchars($nomeUsuario) ?>!</h3>
+            <h3>Bem-vindo, <?= $_SESSION["user_nome"] ?>!</h3>
 
         </section>
 
@@ -61,8 +57,8 @@ $nomeUsuario = isset($_SESSION["user_nome"]) ? $_SESSION["user_nome"] : "Usuári
             <form action="/ConsultarPaciente" method="post">
                 <div class="p-4 border rounded shadow bg-white mt-4 text-center">
                     <h2 class="mb-4">Histórico de Pacientes</h2>
-                    <p>Digite o CPF do paciente para buscar o histórico.</p>
-                    <input type="text" class="form-control mb-3" placeholder="CPF" name="cpf">
+                    <p>Digite o CRM do medico para buscar o histórico.</p>
+                    <input type="text" class="form-control mb-3" placeholder="CRM do Médico" name="CRM">
                     <button class="btn btn-primary">Buscar</button>
                 </div>
             </form>

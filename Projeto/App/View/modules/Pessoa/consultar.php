@@ -27,6 +27,7 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
                 <input type="text" name="cpf" class="form-control">
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
+            <a href="/telaM" class="btn btn-secondary" >Voltar</a>
         </form>
     </div>
 

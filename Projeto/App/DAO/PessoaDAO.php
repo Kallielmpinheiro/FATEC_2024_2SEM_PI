@@ -37,8 +37,8 @@ class PessoaDAO
         $medico_id = $medico['id'];
 
         // Agora, vamos inserir o novo paciente
-        $sql = "INSERT INTO paciente(nome, sobrenome, cpf, cep, estado, rua, cidade, numero, planoSaude, tipoPessoa, senha, medico_id) 
-                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO paciente(nome, sobrenome, cpf, cep, estado, rua, cidade, numero, planoSaude, tipoPessoa, senha, medico_id, status) 
+                    VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->nome);
@@ -53,6 +53,7 @@ class PessoaDAO
         $stmt->bindValue(10, $model->tipoPessoa);
         $stmt->bindValue(11, $model->senha);
         $stmt->bindValue(12, $medico_id);
+        $stmt->bindValue(13, $model->status);
 
         $stmt->execute();
     }
@@ -79,7 +80,7 @@ class PessoaDAO
 
 
 
-        $sql = "UPDATE paciente SET nome = ?, sobrenome = ?, cpf =?, cep = ?, estado = ?, rua = ?, cidade = ?, numero = ?, planoSaude = ?, tipoPessoa = ?, medico_id = ? where idPaciente = ? ";
+        $sql = "UPDATE paciente SET nome = ?, sobrenome = ?, cpf =?, cep = ?, estado = ?, rua = ?, cidade = ?, numero = ?, planoSaude = ?, tipoPessoa = ?, medico_id = ?, status = ? where idPaciente = ? ";
 
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(1, $model->nome);
@@ -93,7 +94,8 @@ class PessoaDAO
         $stmt->bindValue(9, $model->PlanoSaude);
         $stmt->bindValue(10, $model->tipoPessoa);
         $stmt->bindValue(11, $medico_id);
-        $stmt->bindValue(12, $model->idPaciente);
+        $stmt->bindValue(12, $model->status);
+        $stmt->bindValue(13, $model->idPaciente);
 
         $stmt->execute();
     }
@@ -123,13 +125,13 @@ class PessoaDAO
         $stmt->execute();
     }
 
-    public function selectUser($cpf)
+    public function selectUser($medico_CRM)
     {
         include_once 'App/Model/PessoaModel.php';
-        $sql = "SELECT * FROM paciente WHERE cpf = ?";
+        $sql = "SELECT p.*, m.nome AS nomeMedico FROM paciente p JOIN medico m ON p.medico_id = m.id WHERE m.NumCRM = ?";
 
         $stmt = $this->conexao->prepare($sql);
-        $stmt->bindValue(1, $cpf); //
+        $stmt->bindValue(1, $medico_CRM); //
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, 'PessoaModel'); // Use FETCH_CLASS para retornar objetos do tipo PessoaModel
@@ -158,6 +160,8 @@ class PessoaDAO
         $stmt->bindValue(1, $idPaciente);
 
         $stmt->execute();
+     
+       
 
         return $stmt->fetchObject("PessoaModel");
     }
