@@ -21,38 +21,55 @@ if (strpos($_SERVER['PHP_SELF'], basename(__FILE__)) !== false) {
 </head>
 
 <style>
-    .bg-custom {
-        background-color: #2e6476;
-        color: white;
-        /* Define o texto como branco */
+ 
+ .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    /* Estilo específico para o footer */
-    footer.bg-custom {
-        background-color: #2e6476;
-        color: white;
-        /* Define o texto como branco */
+    .navbar .navbar-brand {
+        flex: 1;
     }
+
+    .navbar .nav-center {
+        flex: 2;
+        text-align: center;
+    }
+
+    .navbar .nav-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .main {
+        padding-bottom: 60px; /* Height of the footer */
+    }
+
 </style>
 
 <body class="font-sans">
     <header class="bg-custom text-light">
         <nav class="container d-flex justify-content-between align-items-center py-2">
             <a href="#" class="navbar-brand"><img src="App/View/modules/img/log1.png" alt="Logo"></a>
+            <h3>Bem-vindo, <?= $_SESSION["user_nome"] ?>!</h3>
             <ul class="nav">
                 <li class="nav-item"><a href="/pessoa/form" class="nav-link text-light" onclick="showSection('form-container')">Cadastrar pacientes</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link text-light" onclick="showSection('history-container')">Logout</a></li>
             </ul>
         </nav>
+        
     </header>
 
 
-    <main class="main">
-        <section id="form-container" class="form-container active">
-            <h3>Bem-vindo, <?= $_SESSION["user_nome"] ?>!</h3>
-
-        </section>
-
+    <main class="main">      
         <section id="history-container" class="history-container">
             <form action="/ConsultarPaciente" method="post">
                 <div class="p-4 border rounded shadow bg-white mt-4 text-center">
