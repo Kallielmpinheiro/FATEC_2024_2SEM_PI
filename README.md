@@ -9,6 +9,7 @@ Assim nasceu o I9 Solution, uma iniciativa voltada para a promoção da Saúde e
 
 # I9 Solution
 
+![log2](https://github.com/luizsimi/FATEC_2024_2SEM_PI/assets/141957782/88777243-fd55-4a36-9d3d-be9258a52a82)
 
 
 ## 1. Indroduçao
@@ -43,6 +44,19 @@ Benefícios Esperados:
 •	Acompanhamento mais eficaz do progresso do tratamento.
 •	Redução de eventos adversos relacionados à medicação.
 •	Maior satisfação e engajamento tanto por parte dos pacientes quanto dos médicos.
+
+
+
+![image](https://github.com/luizsimi/FATEC_2024_2SEM_PI/assets/141957782/d7c2dedf-fa5d-4323-a0b7-1c5bb4a9e903)
+
+
+![image](https://github.com/luizsimi/FATEC_2024_2SEM_PI/assets/141957782/9b0f4fcd-be18-494b-a3db-9047636b2232)
+
+
+![image](https://github.com/luizsimi/FATEC_2024_2SEM_PI/assets/141957782/8ca572aa-4962-4ca3-9ee3-8f3aef2cda5f)
+
+
+
 
 ## Contato
 
